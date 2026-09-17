@@ -13,7 +13,8 @@
     "sim": "tsx scripts/sim.ts",
     "replay": "tsx scripts/replay.ts",
     "e2e": "tsx scripts/e2e.ts",
-    "capture": "tsx scripts/capture.ts"
+    "capture": "tsx scripts/capture.ts",
+    "deploy": "bash scripts/deploy-pages.sh"
   },
   "dependencies": {
     "phaser": "^4.2.1"
