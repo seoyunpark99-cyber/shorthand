@@ -40,3 +40,9 @@
 
 ## 4. 남은 작업 (JOBS_TRACE 대비)
 - job.dev.05 검사기 고도화(sha256·프레임·inset·오디오), job.dev.09 디자인 파일럿 임포트, job.dev.10 패키징(보류), job.dev.11 시험 준비.
+
+## 5. 배포 (2026-09-17)
+- GitHub: https://github.com/seoyunpark99-cyber/shorthand (main = 소스, gh-pages = 빌드). 재배포: `npm run deploy`.
+- GitHub Pages: https://seoyunpark99-cyber.github.io/shorthand/ (공개)
+- Claude 아티팩트(비공개 링크): https://claude.ai/artifact/5J1E5jBhxVizsAygm34KWE — Pretendard CSS(jsdelivr)는 아티팩트 CSP 에서 차단되어 Noto Sans KR 로 대체됨.
+- gh 토큰에 workflow 스코프가 없어 Actions 워크플로는 `docs/ci/pages.yml.example` 로만 보관. `gh auth refresh -s workflow` 후 `.github/workflows/` 로 옮기면 push 마다 자동 배포.
