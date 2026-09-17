@@ -14,14 +14,13 @@ describe('parser (T-PARSE)', () => {
     expect(r.validPrefix).toBe(false);
     expect(r.failText).toBe('sl: 미보유 축약');
   });
-  it('S-07 접두어: slash up 은 up. 필요, upleft. 대기', () => {
+  it('S-07 (CR-05) Enter 확정: slash up 은 완성, slash upleft 도 완성, 마침표는 선택', () => {
     const v = buildVocabulary([], []);
-    const r = parse('slash up', v);
-    expect(r.complete).toBeNull();
-    expect(r.validPrefix).toBe(true);
-    expect(r.candidates).toContain('slash up.');
-    expect(r.candidates).toContain('slash upleft.');
+    expect(parse('slash up', v).complete).toEqual({ action: 'slash', dir: 'up' });
     expect(parse('slash up.', v).complete).toEqual({ action: 'slash', dir: 'up' });
+    expect(parse('slash uple', v).complete).toBeNull();
+    expect(parse('slash uple', v).validPrefix).toBe(true);
+    expect(parse('slash upleft', v).complete).toEqual({ action: 'slash', dir: 'upleft' });
   });
   it('S-08 공백 생략: A05+A01r2+A03 → s4 실행 (2자)', () => {
     const v = buildVocabulary([{ id: 'A01', rank: 2 }, { id: 'A03', rank: 1 }, { id: 'A05', rank: 1 }], []);
@@ -45,7 +44,7 @@ describe('parser (T-PARSE)', () => {
   });
   it('남은 글자 계산', () => {
     const v = buildVocabulary([], []);
-    expect(parse('slash lef', v).remainingChars).toBe(2);
-    expect(shortestCommand(v, 'slash', 'left')).toBe('slash left.');
+    expect(parse('slash lef', v).remainingChars).toBe(1);
+    expect(shortestCommand(v, 'slash', 'left')).toBe('slash left');
   });
 });

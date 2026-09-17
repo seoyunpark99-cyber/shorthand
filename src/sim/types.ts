@@ -103,6 +103,7 @@ export interface RunState {
 export type InputEvent =
   | { kind: 'char'; ch: string }
   | { kind: 'backspace' }
+  | { kind: 'enter' }
   | { kind: 'escape' }
   | { kind: 'card'; index: number } // 0..2 확정
   | { kind: 'pause'; reason: 'user' | 'ime' | 'focus' }
@@ -111,7 +112,7 @@ export type InputEvent =
 export type SimEvent =
   | { id: 'ev.buffer_changed'; buffer: string; validPrefix: boolean; candidates: string[]; remainingChars: number | null; failText: string | null }
   | { id: 'ev.command_complete'; action: ActionId; dir: DirId; chars: number }
-  | { id: 'ev.command_fail'; reason: 'no_target' | 'cooldown' | 'blocked' }
+  | { id: 'ev.command_fail'; reason: 'no_target' | 'cooldown' | 'blocked' | 'invalid' }
   | { id: 'ev.hit'; enemyId: number; damage: number; interrupted: boolean; action: ActionId; cell: Cell }
   | { id: 'ev.miss'; action: ActionId; cell: Cell; dir: DirId }
   | { id: 'ev.kill'; enemyId: number; type: string; cell: Cell }

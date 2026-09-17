@@ -38,7 +38,9 @@ export function buildVocabulary(cards: OwnedCard[], skills: ActionId[]): Vocabul
   }
   const dirTokens = new Map<DirId, string[]>();
   for (const d of DIRS) {
-    const toks = [d.long_token];
+    // CR-05: 마침표는 선택 (Enter 확정). 짧은 쪽을 먼저 두어 shortest 계산이 마침표 없는 형태를 고르게 한다
+    const bare = d.long_token.endsWith('.') ? d.long_token.slice(0, -1) : d.long_token;
+    const toks = [bare, d.long_token];
     if (cardRank(cards, d.abbr_card) >= 1) toks.push(d.short_token);
     dirTokens.set(d.id, toks);
   }

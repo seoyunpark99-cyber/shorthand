@@ -5,10 +5,11 @@ export function chars(s: string): InputEvent[] {
   return [...s].map((ch) => ({ kind: 'char', ch }));
 }
 
-/** 문자열을 한 스텝에 한 글자씩 입력 */
-export function typeSlowly(sim: Sim, s: string): SimEvent[] {
+/** 문자열을 한 스텝에 한 글자씩 입력하고 마지막에 Enter (CR-05) */
+export function typeSlowly(sim: Sim, s: string, enter = true): SimEvent[] {
   const all: SimEvent[] = [];
   for (const ch of s) all.push(...sim.step([{ kind: 'char', ch }]));
+  if (enter) all.push(...sim.step([{ kind: 'enter' }]));
   return all;
 }
 

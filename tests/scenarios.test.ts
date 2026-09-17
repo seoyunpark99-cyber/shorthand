@@ -51,10 +51,10 @@ describe('S-01 / S-02 동시 도착', () => {
   it('S-01 완성과 만료가 같은 스텝이면 플레이어 우선', () => {
     const sim = combatSim();
     const g = firstGrunt(sim);
-    typeSlowly(sim, 'slash left');
+    typeSlowly(sim, 'slash left', false);
     g.castRemaining = 0.05;
     g.castStartedStep = -1;
-    const ev = sim.step([{ kind: 'char', ch: '.' }]);
+    const ev = sim.step([{ kind: 'enter' }]);
     const list = ids(ev);
     expect(list.indexOf('ev.command_complete')).toBeLessThan(list.indexOf('ev.kill'));
     expect(list).not.toContain('ev.player_hit');
@@ -63,15 +63,15 @@ describe('S-01 / S-02 동시 도착', () => {
   it('S-02 한 글자 늦음: HP 4, 버퍼 유지, 원인 문구', () => {
     const sim = combatSim();
     const g = firstGrunt(sim);
-    typeSlowly(sim, 'slash lef');
+    typeSlowly(sim, 'slash le', false);
     g.castRemaining = 0.0;
     g.castStartedStep = -1;
-    const ev = sim.step([{ kind: 'char', ch: 't' }]);
+    const ev = sim.step([{ kind: 'char', ch: 'f' }]);
     const hit = ev.find((e) => e.id === 'ev.player_hit');
     expect(hit).toBeDefined();
     expect(sim.state.player.hp).toBe(4);
-    expect(sim.state.player.buffer).toBe('slash left');
-    expect((hit as { reasonText: string }).reasonText).toBe('왼쪽 잔병, 명령 미완성(10/11자)');
+    expect(sim.state.player.buffer).toBe('slash lef');
+    expect((hit as { reasonText: string }).reasonText).toBe('왼쪽 잔병, 명령 미완성(9/10자)');
     expect(g.state).toBe('recovery');
   });
 });
@@ -225,6 +225,21 @@ describe('S-09 사망 우선, S-10 다중 레벨업', () => {
 });
 
 describe('S-11 회전베기 쿨다운', () => {
+  it('Enter 전 완성 상태에서 피격 → "Enter 누르기 전", 잘못된 Enter 는 실패·버퍼 유지', () => {
+    const sim = combatSim();
+    const g = firstGrunt(sim);
+    typeSlowly(sim, 'slash left', false);
+    g.castRemaining = 0.0;
+    g.castStartedStep = -1;
+    const ev = runSteps(sim, 1);
+    expect((ev.find((e) => e.id === 'ev.player_hit') as { reasonText: string }).reasonText).toBe('왼쪽 잔병, Enter 누르기 전');
+    expect(sim.state.player.buffer).toBe('slash left');
+    // 잘못된 명령에 Enter
+    sim.step([{ kind: 'escape' }]);
+    const ev2 = typeSlowly(sim, 'slash lef');
+    expect(ev2.find((e) => e.id === 'ev.command_fail')).toMatchObject({ reason: 'invalid' });
+    expect(sim.state.player.buffer).toBe('slash lef');
+  });
   it('쿨다운 중 완성 → 실패, 쿨다운 유지, 버퍼 비움', () => {
     const sim = combatSim();
     sim.state.player.skills.push('spin');
@@ -233,7 +248,7 @@ describe('S-11 회전베기 쿨다운', () => {
     const ev = typeSlowly(sim, 'spin left.');
     expect(ev.find((e) => e.id === 'ev.command_fail')).toMatchObject({ reason: 'cooldown' });
     expect(sim.state.player.buffer).toBe('');
-    expect(sim.state.player.cooldowns.spin).toBeCloseTo(2.0 - 0.05 * 10);
+    expect(sim.state.player.cooldowns.spin).toBeCloseTo(2.0 - 0.05 * 11);
     expect(sim.state.enemies.length).toBe(1);
   });
   it('쿨다운 0이면 3칸 판정, 쿨다운 4초 시작', () => {
@@ -341,7 +356,7 @@ describe('S-13/14 보스', () => {
     typeSlowly(sim, 'thrust right.');
     expect(boss.hp).toBe(12);
     expect(boss.state).toBe('recovery');
-    expect(boss.recoveryTimer).toBeCloseTo(before - 0.05 * 13, 5);
+    expect(boss.recoveryTimer).toBeCloseTo(before - 0.05 * 14, 5);
   });
   it('보스 처치 → 클리어, 조각 회수, 레벨업 화면 없음', () => {
     const sim = combatSim();
@@ -388,10 +403,11 @@ describe('S-16 재현성 (T-SIM-01)', () => {
   it('같은 시드·같은 입력 → 같은 해시', () => {
     const run = (seed: number) => {
       const sim = new Sim(seed);
-      const script = 'slash left.m right.slash up.guard left.thrust down.';
+      const script = 'slash left|m right|slash up|guard left|thrust down|';
       let i = 0;
       for (let s = 0; s < 6000 && sim.state.phase !== 'result'; s++) {
-        const inputs = s % 6 === 0 && i < script.length ? [{ kind: 'char' as const, ch: script[i++] }] : [];
+        const inputs = s % 6 === 0 && i < script.length ? [script[i] === '|' ? { kind: 'enter' as const } : { kind: 'char' as const, ch: script[i] }] : [];
+        if (inputs.length) i++;
         if (sim.state.phase === 'levelup') sim.step([{ kind: 'card', index: s % 3 }]);
         else sim.step(inputs);
       }

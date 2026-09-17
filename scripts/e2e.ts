@@ -29,8 +29,10 @@ const typeCmd = async (s: string, delay = 90) => {
     await page.keyboard.press(ch === ' ' ? 'Space' : ch === '.' ? 'Period' : ch);
     await page.waitForTimeout(delay);
   }
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(delay);
 };
-await typeCmd('slash left.');
+await typeCmd('slash left');
 await page.waitForTimeout(400);
 await page.screenshot({ path: `${OUT}/03_after_first_kill.png` });
 
@@ -73,7 +75,7 @@ for (let i = 0; i < 60; i++) {
     const adj = st.enemies.filter((e) => Math.max(Math.abs(e.cell[0] - p[0]), Math.abs(e.cell[1] - p[1])) === 1).sort((a, b) => a.castRemaining - b.castRemaining);
     if (adj[0]) {
       const d = dirName(adj[0].cell[0] - p[0], adj[0].cell[1] - p[1]);
-      await typeCmd(`slash ${d}.`, 60);
+      await typeCmd(`slash ${d}`, 60);
     }
   }
   if (i % 8 === 3 && shots < 4) await page.screenshot({ path: `${OUT}/07_combat_${shots++}.png` });

@@ -73,7 +73,7 @@ function dodgeDir(sim: Sim): DirId | null {
 
 function decide(sim: Sim, policy: Policy, secPerChar: number, reactionS: number): { cmd: string; targetKey: string } | null {
   const st = sim.state;
-  const cost = (c: string) => reactionS + c.length * secPerChar;
+  const cost = (c: string) => reactionS + (c.length + 1) * secPerChar; // +1 Enter
   const p = st.player.cell;
   const enemies = st.enemies;
   const dirTo = (e: Enemy) => dirFromVector(e.cell[0] - p[0], e.cell[1] - p[1]);
@@ -157,6 +157,7 @@ function dodgeDirToward(sim: Sim, goal: [number, number]): DirId | null {
 export function runBot(params: BotParams): BotResult {
   const sim = new Sim(params.seed);
   const secPerChar = 60 / (params.wpm * 5);
+  const ENTER = '\n'; // CR-05: 명령 끝에 Enter (1타 비용)
   const maxSteps = params.maxSteps ?? 8000;
   let queue: string[] = [];
   let nextKeyAt = 0; // 시뮬 시계 기준
@@ -178,7 +179,7 @@ export function runBot(params: BotParams): BotResult {
       const c = decide(sim, params.policy, secPerChar, params.reactionS);
       if (c) {
         params.trace?.(`${botClock.toFixed(2)} decide ${c.cmd} (${c.targetKey}) p=${st.player.cell} clock=${st.clock.toFixed(1)}`);
-        queue = [...c.cmd];
+        queue = [...c.cmd, ENTER];
         // 반응 시간은 새 상황(대상 변경)에만 적용. 같은 대상에 대한 연속 입력은 즉시
         nextKeyAt = botClock + (c.targetKey === lastKey ? secPerChar : params.reactionS);
         lastKey = c.targetKey;
@@ -187,7 +188,8 @@ export function runBot(params: BotParams): BotResult {
       }
     }
     if (queue.length > 0 && botClock + 1e-9 >= nextKeyAt) {
-      inputs.push({ kind: 'char', ch: queue.shift()! });
+      const k = queue.shift()!;
+      inputs.push(k === ENTER ? { kind: 'enter' } : { kind: 'char', ch: k });
       nextKeyAt = botClock + secPerChar;
     }
     const ev = sim.step(inputs);

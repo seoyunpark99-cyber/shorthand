@@ -72,6 +72,11 @@ export class InputLayer {
         return;
       }
       if (uiKey.startsWith('digit') && !this.combatInput) return;
+      if (uiKey === 'enter' && this.combatInput) {
+        this.queue.push({ kind: 'enter' });
+        ev.preventDefault();
+        return;
+      }
       if (uiKey === 'enter' || uiKey === 'f10' || uiKey === 'f3' || uiKey === 'up' || uiKey === 'down' || uiKey === 'left' || uiKey === 'right') return;
     }
     if (!this.combatInput) return;

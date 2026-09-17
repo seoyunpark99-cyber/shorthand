@@ -25,7 +25,7 @@ export class TitleScene extends Phaser.Scene {
       { label: t('title.quit'), onSelect: () => this.quit() },
     ]);
     this.add.text(1248, 700, t('title.version', { version: VERSION }), uiStyle(SZ_UI.small, 'text.muted')).setOrigin(1, 1);
-    this.add.text(640, 600, '영문 입력 · 명령 예: slash left.  ·  m 6  ·  guard up.', uiStyle(SZ_UI.small, 'text.muted')).setOrigin(0.5);
+    this.add.text(640, 600, '영문 입력 후 Enter · 예: slash left ↵  ·  m right ↵  ·  guard up ↵', uiStyle(SZ_UI.small, 'text.muted')).setOrigin(0.5);
     if (saveError) this.add.text(640, 660, t('error.save'), uiStyle(SZ_UI.small, 'warn.red')).setOrigin(0.5);
 
     input.onUiKey = (k) => this.onKey(k);

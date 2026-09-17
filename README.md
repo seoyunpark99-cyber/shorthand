@@ -20,7 +20,7 @@
 브라우저에서 `F3` 개발 모드(asset_id·placeholder·M(t)·스텝), 콘솔 `window.__sim.state()` / `.hash()` / `.replay()`.
 
 ## 조작
-- 영문 입력. `slash left.` `thrust up.` `guard right.` `m 6`(가로 축약 보유 시) 등. 완성되는 순간 실행.
+- 영문 입력 후 **Enter** 로 실행. `slash left` `thrust up` `guard right` `m 6`(가로 축약 보유 시) 등. 마침표는 선택. 이동도 명령(`m 방향`)으로만.
 - Backspace 한 글자, Esc 버퍼 비움(빈 버퍼에서 Esc 또는 F10 = 일시정지).
 - 레벨업: 1/2/3 선택, Enter 확정. 결과: 1 같은 시드 / 2 새 시드.
 

@@ -132,6 +132,7 @@ export class Sim {
     for (const inp of inputs) {
       if (st.phase !== 'combat' && st.phase !== 'waiting_first_input') break;
       if (inp.kind === 'char') this.doChar(inp.ch);
+      else if (inp.kind === 'enter') this.doEnter();
       else if (inp.kind === 'backspace') this.doBackspace();
       else if (inp.kind === 'escape') this.doEscape();
     }
@@ -276,18 +277,29 @@ export class Sim {
       this.emit({ id: 'ev.clock_started' });
     }
     st.player.buffer += ch;
-    const r = parse(st.player.buffer, this.vocab);
-    if (r.complete) {
-      const chars = st.player.buffer.length;
-      const cmd = st.player.buffer;
-      st.player.buffer = '';
-      this.emit({ id: 'ev.command_complete', action: r.complete.action, dir: r.complete.dir, chars });
-      this.log(`> ${cmd}`);
-      this.execute(r.complete.action, r.complete.dir);
-      this.emitBuffer();
-    } else {
-      this.emitBuffer();
+    this.emitBuffer();
+  }
+
+  /** CR-05: Enter 로 확정. 완성 명령이면 실행, 아니면 실패 표시(버퍼 유지) */
+  private doEnter() {
+    const st = this.state;
+    if (st.player.buffer.length === 0) return;
+    if (st.phase === 'waiting_first_input') {
+      st.phase = 'combat';
+      this.emit({ id: 'ev.clock_started' });
     }
+    const r = parse(st.player.buffer, this.vocab);
+    if (!r.complete) {
+      this.emit({ id: 'ev.command_fail', reason: 'invalid' });
+      return;
+    }
+    const chars = st.player.buffer.length;
+    const cmd = st.player.buffer;
+    st.player.buffer = '';
+    this.emit({ id: 'ev.command_complete', action: r.complete.action, dir: r.complete.dir, chars });
+    this.log(`> ${cmd}`);
+    this.execute(r.complete.action, r.complete.dir);
+    this.emitBuffer();
   }
 
   private doBackspace() {
@@ -723,6 +735,7 @@ export class Sim {
     if (p.guardConsumedThisStep) return `${dirKo} 두 번째 공격, 막기 소모 뒤 도착`;
     if (p.guard) return `${dirKo} ${enemyKo}, 막기 방향 불일치`;
     const r = parse(p.buffer, this.vocab);
+    if (r.complete) return `${dirKo} ${enemyKo}, Enter 누르기 전`;
     let total: number;
     if (p.buffer.length > 0 && r.validPrefix && r.candidates.length > 0) total = r.candidates[0].length;
     else total = shortestCommand(this.vocab, 'slash', e.castDir ?? 'left').length;

@@ -5,8 +5,9 @@
   "grammar": {
     "form": "ACTION [SPACE] DIRECTION",
     "space_optional_when": "card A05 owned",
-    "long_direction_terminator": ".",
-    "auto_execute": "버퍼 전체가 현재 허용 문법의 완성 명령과 정확히 일치하는 순간 즉시 실행하고 버퍼를 비운다",
+    "long_direction_terminator": ". (선택. CR-05: Enter 확정 방식에서는 마침표 없이도 완성)",
+    "auto_execute": "CR-05: 자동 실행하지 않는다. Enter 를 누른 시점에 버퍼가 완성 명령과 정확히 일치하면 실행하고 버퍼를 비운다. 아니면 실패 표시(버퍼 유지)",
+    "execute_key": "Enter",
     "valid_chars": "a-z 1-9 space period",
     "uppercase": "소문자로 정규화",
     "backspace": "마지막 문자 1개 삭제",
@@ -32,7 +33,7 @@
     {"id": "upleft", "vector": [-1, -1], "long_token": "upleft.", "short_token": "7", "abbr_card": "A16"}
   ],
   "parsing_rules": [
-    "긴 방향 토큰은 마침표까지 포함해야 완성이다. up.은 upleft.의 접두어이므로 마침표 없이는 실행하지 않는다.",
+    "긴 방향 토큰은 마침표 유무 모두 허용한다(CR-05). Enter 로 확정하므로 up 과 upleft 의 접두어 충돌이 없다.",
     "축약 토큰은 해당 카드를 보유한 경우에만 허용한다. 미보유 축약이 입력되면 명령은 완성되지 않고 버퍼에 남는다.",
     "원형 토큰과 이전 랭크 토큰은 축약 획득 후에도 계속 유효하다.",
     "공백 생략(A05) 미보유 시 동작과 방향 사이에 공백 정확히 1개가 있어야 한다. 보유 시 공백 0개 또는 1개.",

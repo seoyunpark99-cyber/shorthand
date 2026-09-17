@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { Sim } from '../../sim/core';
 import { DIR_BY_ID, DIR_ORDER, ENEMY_BY_ID, SPAWN, bandAt, difficultyMultiplier, xpNext, type ActionId, type DirId } from '../../sim/data';
-import { shortestActionToken, shortestCommand, shortestDirToken } from '../../sim/parser';
+import { parse, shortestActionToken, shortestCommand, shortestDirToken } from '../../sim/parser';
 import { Recorder } from '../../sim/replay';
 import { Rng } from '../../sim/rng';
 import type { Cell, SimEvent } from '../../sim/types';
@@ -63,7 +63,7 @@ export class RunScene extends Phaser.Scene {
   private cmdGfx!: Phaser.GameObjects.Graphics;
   private cmdText!: Phaser.GameObjects.Text;
   private cmdRight!: Phaser.GameObjects.Text;
-  private cmdState: 'idle' | 'valid_prefix' | 'invalid' | 'complete_flash' = 'idle';
+  private cmdState: 'idle' | 'valid_prefix' | 'invalid' | 'complete_flash' | 'ready' = 'idle';
   private cmdFlashUntil = 0;
   private clockText!: Phaser.GameObjects.Text;
   private hpGfx!: Phaser.GameObjects.Graphics;
@@ -325,7 +325,7 @@ export class RunScene extends Phaser.Scene {
         } else if (e.buffer.length === 0) {
           if (this.cmdState !== 'complete_flash') this.cmdState = 'idle';
         } else if (e.validPrefix) {
-          this.cmdState = 'valid_prefix';
+          this.cmdState = e.remainingChars === 0 ? 'ready' : 'valid_prefix';
         } else {
           this.cmdState = 'invalid';
           this.cmdFlashUntil = now + (CMD_STATES.invalid.flash_ms as number);
@@ -352,6 +352,10 @@ export class RunScene extends Phaser.Scene {
       case 'ev.command_fail':
         this.failText = t(`hud.fail.${e.reason}`);
         this.failUntil = now + 1500;
+        if (e.reason === 'invalid') {
+          this.cmdState = 'invalid';
+          this.cmdFlashUntil = now + (CMD_STATES.invalid.flash_ms as number);
+        }
         playCue('audio.command_fail');
         break;
       case 'ev.miss':
@@ -870,7 +874,8 @@ export class RunScene extends Phaser.Scene {
     const p = st.player;
     // 명령창
     if (this.cmdFlashUntil && now > this.cmdFlashUntil && (this.cmdState === 'invalid' || this.cmdState === 'complete_flash')) {
-      this.cmdState = p.buffer.length ? 'valid_prefix' : 'idle';
+      const pr0 = parse(p.buffer, this.sim.vocab);
+      this.cmdState = p.buffer.length ? (pr0.complete ? 'ready' : pr0.validPrefix ? 'valid_prefix' : 'invalid') : 'idle';
       this.cmdFlashUntil = 0;
     }
     const cb = L.command_bar;
@@ -878,17 +883,20 @@ export class RunScene extends Phaser.Scene {
     g.clear();
     g.fillStyle(col('bg.panel'), 1);
     g.fillRoundedRect(cb.x, cb.y, cb.w, cb.h, 6);
-    g.lineStyle(2, col(CMD_STATES[this.cmdState].border as string), 1);
+    g.lineStyle(this.cmdState === 'ready' ? 3 : 2, col(this.cmdState === 'ready' ? 'ally.teal' : (CMD_STATES[this.cmdState].border as string)), 1);
     g.strokeRoundedRect(cb.x, cb.y, cb.w, cb.h, 6);
     const showHintCmd = !this.tut.firstChar && getSettings().hints && p.buffer.length === 0;
-    this.cmdText.setText(showHintCmd ? 'slash left.' : p.buffer);
+    this.cmdText.setText(showHintCmd ? 'slash left' : p.buffer);
     this.cmdText.setColor(colHex(showHintCmd ? 'text.muted' : 'text.primary'));
     const pr = this.sim.vocab;
     let right = '';
     if (now < this.failUntil) right = this.failText;
     else if (p.buffer.length > 0) {
-      const cands = [...pr.patterns.keys()].filter((k) => k.startsWith(p.buffer)).sort((a, b) => a.length - b.length || a.localeCompare(b));
-      if (cands.length > 0) right = cands.length === 1 || cands[0].length - p.buffer.length <= 2 ? t('hud.remaining_chars', { n: cands[0].length - p.buffer.length }) : cands.slice(0, 3).join('  ');
+      if (pr.patterns.has(p.buffer)) right = 'Enter ↵';
+      else {
+        const cands = [...pr.patterns.keys()].filter((k) => k.startsWith(p.buffer) && !k.endsWith('.')).sort((a, b) => a.length - b.length || a.localeCompare(b));
+        if (cands.length > 0) right = cands.length === 1 || cands[0].length - p.buffer.length <= 2 ? t('hud.remaining_chars', { n: cands[0].length - p.buffer.length }) : cands.slice(0, 3).join('  ');
+      }
     }
     this.cmdRight.setText(right).setColor(colHex(now < this.failUntil ? 'warn.red' : 'text.muted'));
 
