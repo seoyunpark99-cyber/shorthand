@@ -135,8 +135,8 @@ export class Sim {
       else if (inp.kind === 'backspace') this.doBackspace();
       else if (inp.kind === 'escape') this.doEscape();
     }
-    if (st.phase === 'paused') return this.events;
-    if (st.phase === 'waiting_first_input') return this.events; // 세계 정지
+    if ((st.phase as string) === 'paused') return this.events;
+    if ((st.phase as string) === 'waiting_first_input') return this.events; // 세계 정지
 
     // 4. 적 갱신 (스텝 시작 시 살아 있던 적, ID 순)
     const aliveAtStart = st.enemies.filter((e) => e.id < st.nextEnemyId).map((e) => e.id);
@@ -152,7 +152,7 @@ export class Sim {
       if (!e) continue;
       if (e.state === 'cast' && e.castRemaining <= EPS && e.castStartedStep < st.step) {
         this.resolveAttack(e);
-        if (st.phase === 'result') {
+        if ((st.phase as string) === 'result') {
           st.step++;
           return this.events;
         }
@@ -590,7 +590,7 @@ export class Sim {
           e.castRemaining = e.castTotal;
           e.castStartedStep = st.step;
           e.castDir = dirFromVector(e.cell[0] - p.cell[0], e.cell[1] - p.cell[1]);
-          e.telegraphCells = [1, 2, 3].map((k) => addDir(e.cell, dir, k)).filter((c) => !isWall(c));
+          e.telegraphCells = [1, 2, 3].map((k) => addDir(e.cell, dir, k)).filter((c) => !isWall(c)) as Cell[];
           e.warned = false;
           this.emit({ id: 'ev.boss_telegraph', step: 1, cells: e.telegraphCells });
           this.emit({ id: 'ev.cast_started', enemyId: e.id, dir: e.castDir, remaining: e.castRemaining });
@@ -600,12 +600,12 @@ export class Sim {
         e.moveTimer -= STEP_S;
         if (e.moveTimer <= EPS) {
           e.moveTimer = beh.move_interval_s;
-          const goals: Cell[] = [
+          const goals: Cell[] = ([
             [p.cell[0] + 2, p.cell[1]],
             [p.cell[0], p.cell[1] + 2],
             [p.cell[0] - 2, p.cell[1]],
             [p.cell[0], p.cell[1] - 2],
-          ].filter((c) => !isWall(c)) as Cell[];
+          ] as Cell[]).filter((c) => !isWall(c));
           const next = this.firstStepToward(e, (c) => goals.some((g) => cellEq(g, c)));
           if (next) e.cell = next;
         }
@@ -626,7 +626,7 @@ export class Sim {
           if (e.bossGapTimer! <= EPS) {
             // step2: step1과 직교, 플레이어 현재 칸 중심 3칸
             const perp = dirRotate(e.bossLineDir!, 2);
-            const cells: Cell[] = [addDir(p.cell, perp, -1), [p.cell[0], p.cell[1]], addDir(p.cell, perp, 1)].filter((c) => !isWall(c)) as Cell[];
+            const cells: Cell[] = ([addDir(p.cell, perp, -1), [p.cell[0], p.cell[1]] as Cell, addDir(p.cell, perp, 1)] as Cell[]).filter((c) => !isWall(c));
             e.state = 'cast';
             e.bossStep = 2;
             e.castTotal = pat.step2.cast_s_base * bossM;

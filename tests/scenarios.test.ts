@@ -108,6 +108,7 @@ describe('S-04 추적자 마지막 1초', () => {
       castTotal: 6,
       castStartedStep: -1,
       recoveryTimer: 0,
+      recoverySetStep: -1,
       telegraphCells: [[5, 5]],
       castDir: 'left',
       warned: true,
@@ -127,7 +128,7 @@ describe('S-04 추적자 마지막 1초', () => {
     sim.state.enemies = [];
     const chaser: Enemy = {
       id: 10, type: 'chaser', cell: [4, 5], hp: 2, hpMax: 2, state: 'cast', moveTimer: 0.8,
-      castRemaining: 3.0, castTotal: 6, castStartedStep: -1, recoveryTimer: 0,
+      castRemaining: 3.0, castTotal: 6, castStartedStep: -1, recoveryTimer: 0, recoverySetStep: -1,
       telegraphCells: [[5, 5]], castDir: 'left', warned: false, locked: false,
     };
     sim.state.enemies.push(chaser);
