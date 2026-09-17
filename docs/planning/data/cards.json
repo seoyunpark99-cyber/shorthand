@@ -1,0 +1,40 @@
+{
+  "schema_version": "shorthand-data-1",
+  "spec_version": "1.0",
+  "note": "MVP 카드 풀 14종. rank_values는 해당 랭크에서 적용되는 절대값이며 누적하지 않는다. category는 abbreviation(축약) 또는 performance(성능).",
+  "offer_rules": {
+    "cards_per_offer": 3,
+    "slot_rules": [
+      {"slot": 1, "category": "abbreviation", "subgroup_preference": "action_or_grammar"},
+      {"slot": 2, "category": "abbreviation", "subgroup_preference": "direction_or_grammar", "must_differ_from_slot1": true},
+      {"slot": 3, "category": "performance"}
+    ],
+    "first_offer_fixed": ["A01", "A03", "A06"],
+    "fallback": "해당 계열에 획득 가능한 카드가 없으면 다른 계열로 채운다. 전부 없으면 '응급 회복(현재 HP +1, 상한 적용)' 1장만 제시한다.",
+    "no_duplicate_in_offer": true,
+    "prng": "xorshift32 (shift 13,17,5). 시드 0은 1로 대체. 인덱스 = floor(value / 2^32 * n). 카드 난수 스트림과 스폰 난수 스트림은 분리한다."
+  },
+  "cards": [
+    {"id": "A01", "name_ko": "베기 축약", "category": "abbreviation", "subgroup": "action", "max_rank": 2, "effect_type": "alias", "target": "slash", "rank_values": ["sl", "s"], "requires": []},
+    {"id": "A02", "name_ko": "막기 축약", "category": "abbreviation", "subgroup": "action", "max_rank": 2, "effect_type": "alias", "target": "guard", "rank_values": ["gu", "g"], "requires": []},
+    {"id": "A18", "name_ko": "찌르기 축약", "category": "abbreviation", "subgroup": "action", "max_rank": 2, "effect_type": "alias", "target": "thrust", "rank_values": ["th", "t"], "requires": []},
+    {"id": "A11", "name_ko": "회전베기 축약", "category": "abbreviation", "subgroup": "action", "max_rank": 2, "effect_type": "alias", "target": "spin", "rank_values": ["sp", "w"], "requires": [["A10"]]},
+    {"id": "A03", "name_ko": "가로 축약", "category": "abbreviation", "subgroup": "direction", "max_rank": 1, "effect_type": "direction", "target": "horizontal", "rank_values": [["4", "6"]], "requires": []},
+    {"id": "A04", "name_ko": "세로 축약", "category": "abbreviation", "subgroup": "direction", "max_rank": 1, "effect_type": "direction", "target": "vertical", "rank_values": [["8", "2"]], "requires": []},
+    {"id": "A16", "name_ko": "왼쪽 위 대각 축약", "category": "abbreviation", "subgroup": "direction", "max_rank": 1, "effect_type": "direction", "target": "diag_upleft", "rank_values": [["7", "3"]], "requires": []},
+    {"id": "A17", "name_ko": "오른쪽 위 대각 축약", "category": "abbreviation", "subgroup": "direction", "max_rank": 1, "effect_type": "direction", "target": "diag_upright", "rank_values": [["9", "1"]], "requires": []},
+    {"id": "A05", "name_ko": "연결 기억", "category": "abbreviation", "subgroup": "grammar", "max_rank": 1, "effect_type": "optional_space", "target": "grammar", "rank_values": [true], "requires": [["A01", "A02", "A18", "A11"], ["A03", "A04", "A16", "A17"]]},
+    {"id": "A06", "name_ko": "날 세우기", "category": "performance", "subgroup": "offense", "max_rank": 3, "effect_type": "absolute_stat", "target": "slash.damage", "rank_values": [3, 4, 5], "requires": []},
+    {"id": "A08", "name_ko": "단단한 몸", "category": "performance", "subgroup": "survival", "max_rank": 3, "effect_type": "max_hp_plus_heal", "target": "hp.max", "rank_values": [6, 7, 8], "requires": []},
+    {"id": "A09", "name_ko": "오래 막기", "category": "performance", "subgroup": "survival", "max_rank": 3, "effect_type": "absolute_stat", "target": "guard.duration_s", "rank_values": [4.0, 5.0, 6.0], "requires": []},
+    {"id": "A10", "name_ko": "회전베기", "category": "performance", "subgroup": "skill", "max_rank": 1, "effect_type": "unlock", "target": "spin", "rank_values": [true], "requires": [], "requires_skill_absent": "spin"},
+    {"id": "A12", "name_ko": "기억 끌어당기기", "category": "performance", "subgroup": "utility", "max_rank": 2, "effect_type": "absolute_stat", "target": "pickup.radius", "rank_values": [2, 3], "requires": []}
+  ],
+  "display_template": {
+    "abbreviation_alias": "{action_ko} 명령 {before} → {after} ({before_len}자 → {after_len}자). 피해와 재사용 대기는 그대로.",
+    "abbreviation_direction": "{dir_pair_ko} 방향 {before_a}/{before_b} → {after_a}/{after_b}. 모든 동작과 이동에 적용.",
+    "abbreviation_grammar": "동작과 방향 사이 공백을 생략할 수 있습니다. 예: {example_before} → {example_after}",
+    "performance": "{stat_ko} {before} → {after}. 입력 길이는 그대로.",
+    "rule": "예시 명령은 현재 보유한 축약만 반영해 표시한다. 미보유 축약을 포함한 최단 명령을 지금 쓸 수 있는 것처럼 표시하지 않는다."
+  }
+}

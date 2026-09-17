@@ -1,0 +1,37 @@
+{
+  "schema_version": "shorthand-data-1",
+  "spec_version": "1.0",
+  "note": "적 4종(일반 3 + 보스 1). 시간은 초. cast_s_base는 난도 배율(gauge.json) 적용 전 값. 상대 비율은 v1.3의 잔병 24 : 속사병 10 : 거병 32 틱을 참고했으나 절대값은 실시간용으로 새로 정했다.",
+  "common": {
+    "move_interval_s": 0.8,
+    "recovery_s": 1.5,
+    "approach": "플레이어에 인접한 도달 가능한 칸까지 8방향 최단 경로. 동률은 위에서 시작하는 시계방향. 행동 순서는 적 ID 오름차순. 다른 유닛은 장애물.",
+    "cast_start": "인접 달성 후 다음 시뮬레이션 스텝에 시전 시작. 예고 칸은 시전 시작 시 고정.",
+    "cancel_on_leave": "고정형 예고 칸에서 플레이어가 벗어나면 시전 취소, 적은 recovery 후 재접근.",
+    "interrupt": "interrupts_cast 동작에 맞으면 시전 중단, recovery 후 재시전. 보스는 중단 면역.",
+    "hit_order": "피해 → 사망 여부 → 생존 시 시전 중단",
+    "cast_cap_same_direction": 2,
+    "xp_drop": "사망한 칸에 조각 1개(xp 값). 같은 칸 조각은 합산."
+  },
+  "enemies": [
+    {"id": "grunt", "name_ko": "잔병", "visual_name_ko": "지워진 보초", "hp": 2, "damage": 1, "cast_s_base": 6.0, "attack_shape": "adjacent_single_fixed", "targeting": "fixed_at_cast_start", "xp": 1, "first_appear_s": 0},
+    {"id": "rapid", "name_ko": "속사병", "visual_name_ko": "바늘 서기", "hp": 1, "damage": 1, "cast_s_base": 3.0, "attack_shape": "adjacent_single_fixed", "targeting": "fixed_at_cast_start", "xp": 1, "first_appear_s": 90},
+    {"id": "chaser", "name_ko": "추적자", "visual_name_ko": "뒤따르는 문장", "hp": 2, "damage": 1, "cast_s_base": 6.0, "attack_shape": "adjacent_single_tracking", "targeting": "tracks_player_until_lock", "lock_last_s": 1.0, "tracking_rule": "시전 중 플레이어가 인접 칸 안에서 이동하면 예고 칸을 따라 갱신. 인접 밖으로 나가면 취소. 마지막 lock_last_s 동안은 고정.", "xp": 2, "first_appear_s": 150},
+    {"id": "boss_executor", "name_ko": "기억의 집행자", "visual_name_ko": "기억의 집행자", "hp": 14, "damage": 2, "interrupt_immune": true, "xp": 0, "first_appear_s": 270, "spawn_condition": "270초 도달 시 일반 스폰 정지. 살아 있는 일반 적이 0이 되거나 285초가 되면 등장(둘 중 먼저). 등장 위치는 플레이어에서 오른쪽 거리 3, 막히면 시계방향 다음 방향.",
+      "behavior": {
+        "keep_distance": 2,
+        "move_interval_s": 1.2,
+        "align_rule": "플레이어와 같은 행 또는 열, 거리 2를 유지하도록 이동. 이미 정렬이면 이동하지 않음.",
+        "pattern_deletion_line": {
+          "step1": {"telegraph": "보스에서 플레이어 방향 직선 3칸", "cast_s_base": 2.4, "damage": 2},
+          "gap_s": 0.6,
+          "step2": {"telegraph": "step1과 직교하는 방향으로, 플레이어 현재 위치를 지나는 직선 3칸(보스 기준 새로 정렬 없이 플레이어 칸 중심 좌우 또는 상하)", "cast_s_base": 1.5, "damage": 2},
+          "recovery_s": 3.0,
+          "recovery_note": "회복 3초 동안 보스는 이동하지 않고 예고도 없다. 이 창이 반격 구간이다."
+        },
+        "difficulty_multiplier": "gauge.json의 배율을 cast_s_base에 적용하되 difficulty_floor 아래로 내려가지 않는다(CR-01: 270초의 M=0.316이면 삭제선이 0.76/0.47초가 되어 회피 불가). recovery에는 적용하지 않는다.",
+        "difficulty_floor": 1.0
+      }
+    }
+  ]
+}

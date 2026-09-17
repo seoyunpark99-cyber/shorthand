@@ -1,0 +1,771 @@
+{
+  "project_id": "shorthand",
+  "schema_version": "workflow-asset-1",
+  "contract_version": "1.0",
+  "contract_hash": "sha256 of this file with contract_hash field set to the literal string CONTRACT_HASH_PLACEHOLDER; see shared/CONTRACT_HASH.txt",
+  "approval_ref": "PROJECT_CONTROL DC-08 (일괄 승인)",
+  "spec_version": "1.0",
+  "coordinate_system": {
+    "design_resolution_px": [
+      1280,
+      720
+    ],
+    "x_right_y_down": true,
+    "tile_logical_px": 56,
+    "board_origin_px": [
+      32,
+      52
+    ],
+    "board_cells": [
+      11,
+      11
+    ],
+    "unit": "px at 1280x720. 실제 창 크기는 비율 유지 스케일. 논리 좌표는 항상 이 기준.",
+    "body_source_canvas_px": [
+      112,
+      112
+    ],
+    "body_display_px": [
+      56,
+      56
+    ],
+    "body_pivot_source_px": [
+      56,
+      96
+    ],
+    "body_pivot_note": "발 위치. 셀 중심 x, 셀 하단에서 위로 8px(표시 기준 4px)에 발이 놓인다. 오차 허용 0px.",
+    "tile_source_canvas_px": [
+      112,
+      112
+    ],
+    "tile_pivot_source_px": [
+      0,
+      0
+    ],
+    "boss_source_canvas_px": [
+      160,
+      160
+    ],
+    "boss_display_px": [
+      80,
+      80
+    ],
+    "boss_pivot_source_px": [
+      80,
+      136
+    ],
+    "icon_source_canvas_px": [
+      64,
+      64
+    ],
+    "icon_display_px": [
+      20,
+      20
+    ],
+    "icon_display_px_large": [
+      32,
+      32
+    ],
+    "alpha": "straight alpha, RGBA8, sRGB, PNG",
+    "filtering": "linear (0.5 배 축소). 픽셀 정렬 불필요",
+    "trim_rotate": "금지. 투명 여백을 잘라내면 피벗이 어긋난다.",
+    "safe_area_body": "몸체 불투명 픽셀은 x 20..92, y 12..100 안(source px). 무기 끝은 캔버스 안이면 초과 허용",
+    "hitbox_note": "게임 판정은 셀 단위다. 그림 외곽에서 판정을 추출하지 않는다."
+  },
+  "time_contract": {
+    "sim_step_ms": 50,
+    "idle_clip": {
+      "frame_count": 2,
+      "duration_ms": [
+        450,
+        450
+      ],
+      "loop": true
+    },
+    "cast_clip": {
+      "frame_count": 1,
+      "duration_ms": [
+        0
+      ],
+      "loop": false,
+      "note": "시전 상태 동안 정지 포즈. 게이지가 시간을 보여주므로 몸체 프레임으로 시간을 표현하지 않는다."
+    },
+    "code_motion_note": "공격·피격·사망·이동은 코드 모션(트윈)이다. DESIGN_SPEC 8절의 파라미터를 개발이 구현한다. 별도 프레임 없음."
+  },
+  "production_methods_in_use": [
+    "vector_authored",
+    "raster_generated",
+    "code_rendered",
+    "library_sourced",
+    "audio_generated"
+  ],
+  "assets": [
+    {
+      "asset_id": "ref.shot.hud",
+      "kind": "reference_image",
+      "role": "planning_preview",
+      "production_method": "raster_generated",
+      "reason": "글로만 된 방향으로 만든 에셋이 합쳤을 때 어울리는지 보기 위한 기준 그림. 최종 에셋 아님",
+      "source_format": "PNG 1280x720 이상",
+      "runtime_format": "N/A",
+      "batch_id": null,
+      "used_by": [
+        "design 참조"
+      ],
+      "replacement_unit": "N/A",
+      "pilot": true
+    },
+    {
+      "asset_id": "visual.player.body",
+      "kind": "sprite",
+      "variant_id": "default",
+      "display_name_ko": "플레이어 몸체",
+      "production_method": "vector_authored",
+      "followup_method": "raster_generated (파일럿 판정 후 교체 검토)",
+      "reason": "파일럿은 비용 0의 벡터로 규격·가독성을 먼저 확인",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112 x2 frames (idle) + 1 frame (act)",
+      "clips": [
+        "visual.player.body.idle",
+        "visual.player.body.act"
+      ],
+      "batch_id": null,
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "asset",
+      "pilot": true
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "kind": "sprite",
+      "variant_id": "default",
+      "display_name_ko": "잔병 몸체",
+      "production_method": "vector_authored",
+      "followup_method": "raster_generated",
+      "reason": "동상",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112 x2 (idle) + 1 (cast)",
+      "clips": [
+        "visual.enemy.grunt.body.idle",
+        "visual.enemy.grunt.body.cast"
+      ],
+      "batch_id": null,
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "asset",
+      "pilot": true
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "kind": "sprite",
+      "variant_id": "default",
+      "display_name_ko": "속사병 몸체",
+      "production_method": "vector_authored",
+      "followup_method": "raster_generated",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112 x2 + 1",
+      "clips": [
+        "visual.enemy.rapid.body.idle",
+        "visual.enemy.rapid.body.cast"
+      ],
+      "batch_id": null,
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "asset",
+      "pilot": false
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "kind": "sprite",
+      "variant_id": "default",
+      "display_name_ko": "추적자 몸체",
+      "production_method": "vector_authored",
+      "followup_method": "raster_generated",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112 x2 + 1",
+      "clips": [
+        "visual.enemy.chaser.body.idle",
+        "visual.enemy.chaser.body.cast"
+      ],
+      "batch_id": null,
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "asset",
+      "pilot": false
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "kind": "sprite",
+      "variant_id": "default",
+      "display_name_ko": "기억의 집행자 몸체",
+      "production_method": "vector_authored",
+      "followup_method": "raster_generated",
+      "source_format": "SVG",
+      "runtime_format": "PNG 160x160 x2 (idle) + 1 (cast)",
+      "clips": [
+        "visual.boss.executor.body.idle",
+        "visual.boss.executor.body.cast"
+      ],
+      "batch_id": null,
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "asset",
+      "pilot": false
+    },
+    {
+      "asset_id": "visual.shard",
+      "kind": "sprite",
+      "variant_id": "default",
+      "display_name_ko": "기억 조각",
+      "production_method": "vector_authored",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112 x1",
+      "clips": [],
+      "batch_id": null,
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "asset",
+      "pilot": true
+    },
+    {
+      "asset_id": "tile.floor",
+      "kind": "tile",
+      "variant_id": "default",
+      "display_name_ko": "바닥 타일",
+      "production_method": "vector_authored",
+      "followup_method": "raster_generated",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112",
+      "batch_id": "batch.tiles.yard",
+      "used_by": [
+        "board"
+      ],
+      "replacement_unit": "batch",
+      "pilot": true
+    },
+    {
+      "asset_id": "tile.floor_alt",
+      "kind": "tile",
+      "variant_id": "default",
+      "display_name_ko": "바닥 타일 변형",
+      "production_method": "vector_authored",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112",
+      "batch_id": "batch.tiles.yard",
+      "used_by": [
+        "board 20% 칸에 난수 배치(스폰 스트림과 별개, 시드 고정)"
+      ],
+      "replacement_unit": "batch",
+      "pilot": true
+    },
+    {
+      "asset_id": "tile.wall",
+      "kind": "tile",
+      "variant_id": "default",
+      "display_name_ko": "외곽 벽 타일",
+      "production_method": "vector_authored",
+      "source_format": "SVG",
+      "runtime_format": "PNG 112x112",
+      "batch_id": "batch.tiles.yard",
+      "used_by": [
+        "board 외곽"
+      ],
+      "replacement_unit": "batch",
+      "pilot": true
+    },
+    {
+      "asset_id": "ui.panel.card",
+      "kind": "ui_panel",
+      "variant_id": "default",
+      "display_name_ko": "증강 카드 패널",
+      "production_method": "vector_authored",
+      "source_format": "SVG",
+      "runtime_format": "PNG 240x320, 9-slice inset 24px",
+      "states": [
+        "normal",
+        "selected"
+      ],
+      "batch_id": null,
+      "used_by": [
+        "screen.levelup"
+      ],
+      "replacement_unit": "asset",
+      "pilot": true
+    },
+    {
+      "asset_id": "batch.icons.main",
+      "kind": "icon_batch",
+      "production_method": "vector_authored",
+      "source_format": "SVG 시트 1장 (6열 3행, 셀 64x64, 간격 0)",
+      "runtime_format": "개별 PNG 64x64 x17",
+      "members": [
+        "icon.enemy.grunt",
+        "icon.enemy.rapid",
+        "icon.enemy.chaser",
+        "icon.enemy.boss",
+        "icon.card.abbr_action",
+        "icon.card.abbr_direction",
+        "icon.card.abbr_grammar",
+        "icon.card.offense",
+        "icon.card.survival",
+        "icon.card.skill",
+        "icon.card.utility",
+        "icon.status.guard",
+        "icon.status.cooldown",
+        "icon.status.wait",
+        "icon.ui.pause",
+        "icon.ui.settings",
+        "icon.ui.close"
+      ],
+      "used_by": [
+        "hud.ring",
+        "screen.levelup",
+        "hud.side",
+        "screens"
+      ],
+      "replacement_unit": "batch",
+      "pilot": true
+    },
+    {
+      "asset_id": "font.mono",
+      "kind": "font",
+      "display_name_ko": "명령·숫자 글꼴",
+      "production_method": "library_sourced",
+      "source": "JetBrains Mono (SIL OFL 1.1)",
+      "runtime_format": "TTF 또는 WOFF2, 라이선스 파일 동봉",
+      "used_by": [
+        "hud.command_bar",
+        "ring.gauge_text",
+        "hud.side.abbr_table"
+      ],
+      "replacement_unit": "asset",
+      "pilot": true
+    },
+    {
+      "asset_id": "font.ui",
+      "kind": "font",
+      "display_name_ko": "UI 본문 글꼴(한글)",
+      "production_method": "library_sourced",
+      "source": "Pretendard (SIL OFL 1.1)",
+      "runtime_format": "TTF 또는 WOFF2, 라이선스 파일 동봉",
+      "used_by": [
+        "모든 UI 텍스트"
+      ],
+      "replacement_unit": "asset",
+      "pilot": true
+    },
+    {
+      "asset_id": "screen.layout.title",
+      "kind": "ui_layout_preview",
+      "production_method": "vector_authored",
+      "source_format": "SVG 또는 편집 가능한 원본",
+      "runtime_format": "PNG 1280x720 검토용",
+      "used_by": [
+        "디자인 검토"
+      ],
+      "replacement_unit": "N/A",
+      "pilot": false
+    },
+    {
+      "asset_id": "screen.layout.hud",
+      "kind": "ui_layout_preview",
+      "production_method": "vector_authored",
+      "runtime_format": "PNG 1280x720",
+      "used_by": [
+        "디자인 검토"
+      ],
+      "pilot": false,
+      "note": "파일럿에서는 ref.shot.hud가 이 역할을 대신한다"
+    },
+    {
+      "asset_id": "screen.layout.levelup",
+      "kind": "ui_layout_preview",
+      "production_method": "vector_authored",
+      "runtime_format": "PNG 1280x720",
+      "pilot": false
+    },
+    {
+      "asset_id": "screen.layout.pause_settings",
+      "kind": "ui_layout_preview",
+      "production_method": "vector_authored",
+      "runtime_format": "PNG 1280x720",
+      "pilot": false
+    },
+    {
+      "asset_id": "screen.layout.result",
+      "kind": "ui_layout_preview",
+      "production_method": "vector_authored",
+      "runtime_format": "PNG 1280x720",
+      "pilot": false
+    }
+  ],
+  "code_rendered": [
+    {
+      "binding_key": "hud.ring",
+      "spec": "DESIGN_SPEC 7.2",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "ring.gauge",
+      "spec": "DESIGN_SPEC 7.2",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "hud.command_bar",
+      "spec": "DESIGN_SPEC 7.3",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "hud.side",
+      "spec": "DESIGN_SPEC 7.4",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "board.danger_cell",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "board.spawn_marker",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "ui.button",
+      "spec": "DESIGN_SPEC 7.5 토큰",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "ui.panel.side",
+      "spec": "DESIGN_SPEC 7.5",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.slash",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.thrust",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.spin",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.guard_arc",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.move_trail",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.enemy_attack",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.player_hit",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.pickup_line",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.levelup_beam",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.boss_line",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    },
+    {
+      "binding_key": "fx.death_dissolve",
+      "spec": "DESIGN_SPEC 8",
+      "owner": "dev"
+    }
+  ],
+  "bindings": [
+    {
+      "binding_key": "actor.player",
+      "composition_id": "visual.player.assembled",
+      "parts": [
+        {
+          "part_id": "body",
+          "asset_id": "visual.player.body"
+        },
+        {
+          "part_id": "guard_arc",
+          "code": "fx.guard_arc"
+        },
+        {
+          "part_id": "shadow",
+          "code": "board.unit_shadow"
+        }
+      ]
+    },
+    {
+      "binding_key": "actor.enemy.grunt",
+      "asset_id": "visual.enemy.grunt.body"
+    },
+    {
+      "binding_key": "actor.enemy.rapid",
+      "asset_id": "visual.enemy.rapid.body"
+    },
+    {
+      "binding_key": "actor.enemy.chaser",
+      "asset_id": "visual.enemy.chaser.body"
+    },
+    {
+      "binding_key": "actor.boss.executor",
+      "asset_id": "visual.boss.executor.body"
+    },
+    {
+      "binding_key": "board.shard",
+      "asset_id": "visual.shard"
+    },
+    {
+      "binding_key": "board.tile.floor",
+      "asset_id": "tile.floor"
+    },
+    {
+      "binding_key": "board.tile.floor_alt",
+      "asset_id": "tile.floor_alt"
+    },
+    {
+      "binding_key": "board.tile.wall",
+      "asset_id": "tile.wall"
+    },
+    {
+      "binding_key": "screen.levelup.card_panel",
+      "asset_id": "ui.panel.card"
+    },
+    {
+      "binding_key": "icon.*",
+      "batch_id": "batch.icons.main"
+    },
+    {
+      "binding_key": "font.mono",
+      "asset_id": "font.mono"
+    },
+    {
+      "binding_key": "font.ui",
+      "asset_id": "font.ui"
+    }
+  ],
+  "composition": {
+    "visual.player.assembled": {
+      "mode": "runtime_parts",
+      "parts_order": [
+        "shadow",
+        "body",
+        "guard_arc"
+      ],
+      "anchor": "body pivot",
+      "guard_arc_offset": "몸체 피벗 기준 반지름 34px(표시 기준)의 호. 방향은 8방향 각도.",
+      "shadow": "code_rendered 타원 40x14px 표시 기준, 불투명도 0.35, 피벗 아래 2px"
+    }
+  },
+  "audio_cues": [
+    {
+      "cue_id": "audio.type_key",
+      "trigger": "ev.buffer_changed",
+      "priority": "low",
+      "length_s": "0.05~0.08",
+      "loop": false,
+      "concurrency": 4,
+      "volume_db": -18,
+      "user_toggle": "settings.input_sound",
+      "generation": "audio_generated",
+      "pilot": true
+    },
+    {
+      "cue_id": "audio.command_ok",
+      "trigger": "ev.command_complete",
+      "priority": "mid",
+      "length_s": "0.1~0.2",
+      "concurrency": 2,
+      "volume_db": -12,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.command_fail",
+      "trigger": "ev.command_fail",
+      "priority": "mid",
+      "length_s": "0.15~0.3",
+      "concurrency": 1,
+      "volume_db": -12,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.hit_slash",
+      "trigger": "ev.hit(slash|spin)",
+      "priority": "high",
+      "length_s": "0.15~0.3",
+      "concurrency": 3,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": true
+    },
+    {
+      "cue_id": "audio.hit_thrust",
+      "trigger": "ev.hit(thrust)",
+      "priority": "high",
+      "length_s": "0.15~0.3",
+      "concurrency": 2,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.guard_block",
+      "trigger": "ev.guard_consumed",
+      "priority": "high",
+      "length_s": "0.2~0.4",
+      "concurrency": 1,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.move",
+      "trigger": "ev.move",
+      "priority": "low",
+      "length_s": "0.1~0.2",
+      "concurrency": 2,
+      "volume_db": -16,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.cast_warning",
+      "trigger": "ev.cast_warning (남은 1.0초 진입)",
+      "priority": "high",
+      "length_s": "0.2~0.4",
+      "concurrency": 2,
+      "volume_db": -10,
+      "generation": "audio_generated",
+      "pilot": true,
+      "note": "여러 적이 매 스텝 반복하지 않도록 적당 1회"
+    },
+    {
+      "cue_id": "audio.player_hit",
+      "trigger": "ev.player_hit",
+      "priority": "top",
+      "length_s": "0.3~0.5",
+      "concurrency": 1,
+      "volume_db": -6,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.enemy_death",
+      "trigger": "ev.kill",
+      "priority": "mid",
+      "length_s": "0.3~0.6",
+      "concurrency": 3,
+      "volume_db": -10,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.xp_pickup",
+      "trigger": "ev.shard_picked",
+      "priority": "low",
+      "length_s": "0.1~0.2",
+      "concurrency": 3,
+      "volume_db": -14,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.levelup",
+      "trigger": "ev.levelup",
+      "priority": "top",
+      "length_s": "0.8~1.2",
+      "concurrency": 1,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.card_select",
+      "trigger": "ev.card_applied",
+      "priority": "mid",
+      "length_s": "0.2~0.4",
+      "concurrency": 1,
+      "volume_db": -10,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.boss_telegraph",
+      "trigger": "ev.boss_telegraph",
+      "priority": "high",
+      "length_s": "0.4~0.8",
+      "concurrency": 1,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.clear",
+      "trigger": "ev.run_end(clear)",
+      "priority": "top",
+      "length_s": "1.5~2.5",
+      "concurrency": 1,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": false
+    },
+    {
+      "cue_id": "audio.death",
+      "trigger": "ev.run_end(death)",
+      "priority": "top",
+      "length_s": "1.0~2.0",
+      "concurrency": 1,
+      "volume_db": -8,
+      "generation": "audio_generated",
+      "pilot": false
+    }
+  ],
+  "audio_format": {
+    "source": "WAV 48kHz 16bit mono (생성 서비스 결과가 MP3면 원본으로 보관하고 WAV로 변환)",
+    "runtime": "OGG Vorbis q5 mono",
+    "loudness": "피크 -1 dBFS 이하, 무음 여백 앞 0ms 뒤 최대 50ms",
+    "music": "MVP 없음"
+  },
+  "placeholder_policy": {
+    "sprites": "개발 세션이 같은 캔버스·피벗의 단색 도형(플레이어 상아색 원, 잔병 회색 사각, 속사병 회색 삼각, 추적자 회색 마름모, 보스 큰 육각)으로 생성. 개발 모드에서 asset_id 텍스트 표시.",
+    "icons": "글자 1~2자의 사각 아이콘",
+    "fonts": "시스템 monospace / sans-serif로 대체 가능하나 폭 차이를 검사 대상으로 기록",
+    "audio": "짧은 비프(주파수로 큐 구분) 또는 무음. 트리거·길이 의미는 로그로 검증",
+    "rule": "임시 도형 모양에 맞춰 판정·레이아웃·시간을 바꾸지 않는다."
+  },
+  "replacement_units": [
+    "asset(각 몸체·조각·카드 패널)",
+    "batch(tiles.yard, icons.main)",
+    "cue(각 오디오)",
+    "font(각 글꼴)"
+  ],
+  "manifest_rule": "코드는 binding_key와 asset_id만 참조한다. 실제 파일 경로는 assets/manifest.json(개발 기본 에셋)과 delivery/manifest.json(디자인 납품)에만 있다."
+}

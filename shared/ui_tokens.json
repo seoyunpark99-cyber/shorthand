@@ -1,0 +1,46 @@
+{
+  "project_id": "shorthand",
+  "contract_version": "1.0",
+  "note": "코드 렌더링 UI와 VFX가 쓰는 색·타이포·간격 토큰의 단일 원본. 디자인 브리프의 색값도 여기서 복사한다.",
+  "colors": {
+    "bg.ink": "#151A21",
+    "bg.slate": "#303A46",
+    "bg.panel": "#1C232C",
+    "bg.tile_line": "#1A2028",
+    "bg.wall_mark": "#283140",
+    "line.faint": "#3C4756",
+    "line.strong": "#8A96A6",
+    "text.primary": "#F2E9D8",
+    "text.muted": "#9AA3B0",
+    "player.ivory": "#F2E9D8",
+    "ally.teal": "#60DBCE",
+    "threat.orange": "#FF9B54",
+    "threat.orange_dim": "#8C5A34",
+    "threat.pierce_magenta": "#E77FA5",
+    "xp.blue": "#93C7FF",
+    "heal.green": "#BBD891",
+    "warn.red": "#E05A4E",
+    "boss.gold": "#E8C46A"
+  },
+  "typography": {
+    "font.mono": {"family": "JetBrains Mono", "sizes_px": {"command": 28, "gauge": 16, "abbr_table": 18, "result_log": 16}},
+    "font.ui": {"family": "Pretendard", "weights": [400, 600], "sizes_px": {"title": 40, "h1": 28, "body": 18, "small": 14, "card_title": 22, "card_body": 16}},
+    "line_height": 1.4,
+    "min_contrast": "본문 4.5:1, 게이지 숫자 7:1 (bg.ink 기준)"
+  },
+  "spacing_px": {"unit": 8, "panel_padding": 16, "card_gap": 24, "hud_gutter": 32},
+  "layout_1280x720": {
+    "board": {"x": 32, "y": 52, "w": 616, "h": 616},
+    "command_bar": {"x": 32, "y": 676, "w": 616, "h": 36},
+    "side_panel": {"x": 680, "y": 52, "w": 568, "h": 616},
+    "side_panel_rows": {"clock_hp_xp": {"y": 52, "h": 72}, "abbr_table": {"y": 140, "h": 300}, "skill_cooldown": {"y": 452, "h": 48}, "hint_and_hit_reason": {"y": 516, "h": 152}},
+    "top_strip": {"x": 32, "y": 8, "w": 1216, "h": 36, "content": "왼쪽 게임명, 오른쪽 일시정지 아이콘"},
+    "ring": {"center": "플레이어 셀 중심", "radius_px": 88, "segment_gap_deg": 6, "gauge_arc_width_px": 8, "text_offset_px": 108, "icon_offset_px": 128},
+    "levelup_overlay": {"dim": "rgba(21,26,33,0.72)", "cards": [{"x": 268, "y": 200}, {"x": 520, "y": 200}, {"x": 772, "y": 200}], "card_size": [240, 320], "footer": {"y": 560, "h": 60, "content": "현재 HP · XP · 주력 명령 · 다음 밴드 적 종류"}}
+  },
+  "component_states": {
+    "ui.button": {"normal": {"bg": "bg.panel", "border": "line.strong", "text": "text.primary"}, "hover": {"border": "ally.teal"}, "pressed": {"bg": "bg.slate"}, "disabled": {"border": "line.faint", "text": "text.muted"}, "focus": {"outline": "ally.teal 2px"}, "min_size_px": [160, 44]},
+    "ui.panel.card": {"normal": {"border": "line.strong"}, "selected": {"border": "ally.teal", "glow": "ally.teal 0.35"}},
+    "hud.command_bar": {"idle": {"border": "line.faint"}, "valid_prefix": {"border": "line.strong"}, "invalid": {"border": "warn.red", "flash_ms": 200}, "complete_flash": {"border": "ally.teal", "flash_ms": 120}}
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "template_status": "UNFILLED_DO_NOT_IMPORT",
+  "schema_version": "workflow-asset-1",
+  "project_id": null,
+  "delivery_id": null,
+  "delivery_role": null,
+  "contract_version": null,
+  "contract_hash": null,
+  "supplier": null,
+  "created_at": null,
+  "replacement_units": [
+    {
+      "unit_id": null,
+      "required_target_ids": [],
+      "artifact_ids": [],
+      "status": "not_ready"
+    }
+  ],
+  "artifacts": [
+    {
+      "artifact_id": null,
+      "asset_id": null,
+      "variant_id": null,
+      "asset_revision": null,
+      "role": null,
+      "relative_path": null,
+      "sha256": null,
+      "media_type": null,
+      "actual_properties": {},
+      "origin": {
+        "method": null,
+        "tool_and_version": null,
+        "source_reference_ids": [],
+        "rights_record_ref": null
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "target_id": null,
+      "target_kind": null,
+      "variant_id": null,
+      "artifact_id": null,
+      "source_size_px": null,
+      "rect_px": null,
+      "trim_offset_px": null,
+      "rotated": false
+    }
+  ],
+  "checks": [
+    {
+      "check_id": null,
+      "target_ids": [],
+      "input_contract_hash": null,
+      "input_artifact_hashes": [],
+      "status": "not_run",
+      "observed_result": null,
+      "evidence_path": null,
+      "checked_at": null
+    }
+  ],
+  "art_approval_ref": null,
+  "missing_target_ids": [],
+  "change_requests": []
+}

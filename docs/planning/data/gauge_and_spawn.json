@@ -1,0 +1,64 @@
+{
+  "schema_version": "shorthand-data-1",
+  "spec_version": "1.0",
+  "note": "MVP 5분 압축판의 난도 곡선과 스폰 규칙. 모든 값은 시험 시작값이며 parameters 표(GAME_SPEC 6절)의 허용 범위 안에서 개발 세션이 시뮬레이션으로 조정할 수 있다.",
+  "simulation": {
+    "step_ms": 50,
+    "note": "시뮬레이션은 50ms 고정 스텝. 입력 이벤트는 도착한 다음 스텝 시작에 처리. 렌더 프레임과 독립."
+  },
+  "difficulty": {
+    "multiplier_formula": "M(t) = max(floor_value, decay ^ floor(t / step_s))",
+    "decay": 0.88,
+    "step_s": 30,
+    "floor_value": 0.30,
+    "applies_to": "모든 적의 cast_s_base (보스 포함)",
+    "table_reference": [
+      {"t_s": 0, "M": 1.0, "grunt_cast_s": 6.0, "rapid_cast_s": 3.0},
+      {"t_s": 60, "M": 0.774, "grunt_cast_s": 4.6, "rapid_cast_s": 2.3},
+      {"t_s": 120, "M": 0.6, "grunt_cast_s": 3.6, "rapid_cast_s": 1.8},
+      {"t_s": 180, "M": 0.464, "grunt_cast_s": 2.8, "rapid_cast_s": 1.4},
+      {"t_s": 240, "M": 0.36, "grunt_cast_s": 2.2, "rapid_cast_s": 1.1},
+      {"t_s": 270, "M": 0.316, "grunt_cast_s": 1.9, "rapid_cast_s": 0.95},
+      {"t_s": 300, "M": 0.30, "grunt_cast_s": 1.8, "rapid_cast_s": 0.9}
+    ],
+    "run_clock": "런 시계 t는 첫 유효 입력에서 시작하고, 레벨업 화면·일시정지·포커스 상실·IME 안내 중에는 멈춘다."
+  },
+  "spawn": {
+    "telegraph_s": 1.0,
+    "distance_chebyshev": 4,
+    "fallback_distance": 3,
+    "position_rule": "플레이어 기준 Chebyshev 거리 4의 링에서 난수로 칸을 고른다. 벽·유닛·예약 칸이면 시계방향 다음 칸. 링 전체가 불가면 거리 3. 그래도 없으면 0.5초 뒤 재시도.",
+    "reserved_cell": "예고 중인 칸은 이동 목적지로 쓸 수 없다.",
+    "bands": [
+      {"from_s": 0, "to_s": 45, "interval_s": 6.0, "max_alive": 2, "pool": [["grunt", 1.0]], "note": "첫 적은 (4,5)에 예고 없이 배치하고 첫 입력 전까지 세계 정지. 첫 적의 시전은 8.0초."},
+      {"from_s": 45, "to_s": 90, "interval_s": 5.0, "max_alive": 3, "pool": [["grunt", 1.0]]},
+      {"from_s": 90, "to_s": 150, "interval_s": 4.5, "max_alive": 3, "pool": [["grunt", 0.75], ["rapid", 0.25]]},
+      {"from_s": 150, "to_s": 210, "interval_s": 4.0, "max_alive": 4, "pool": [["grunt", 0.5], ["rapid", 0.25], ["chaser", 0.25]]},
+      {"from_s": 210, "to_s": 270, "interval_s": 3.5, "max_alive": 4, "pool": [["grunt", 0.4], ["rapid", 0.3], ["chaser", 0.3]]},
+      {"from_s": 270, "to_s": 9999, "interval_s": 0, "max_alive": 0, "pool": [], "note": "일반 스폰 정지. 보스 등장 조건은 enemies.json 참조."}
+    ],
+    "interval_rule": "interval_s마다 스폰 시도. max_alive에 도달하면 시도를 건너뛰고 다음 interval에 재시도(누적하지 않음).",
+    "expected_kills_reference": "간격과 상한으로 계산한 5분 최대 등장 수는 약 60마리. 실제 처치 수는 플레이어 속도에 따라 30~50마리로 예상하며 시뮬레이션으로 확인한다."
+  },
+  "xp": {
+    "next_level_formula": "xp_next(L) = 3 + (L - 1)",
+    "cumulative_reference": [3, 7, 12, 18, 25, 33, 42, 52],
+    "target_levelups_in_5min": "6~9회",
+    "pickup_radius_base": 1,
+    "pickup_metric": "Chebyshev",
+    "pickup_note": "조각은 소멸하지 않는다. 벽 위에 생기면 가장 가까운 바닥 칸으로 옮긴다. 보스 처치(클리어) 시 남은 조각은 일괄 회수하되 클리어 후 레벨업 화면은 열지 않는다."
+  },
+  "player": {
+    "hp": 5,
+    "start_cell": [5, 5],
+    "skills_slots": 1,
+    "start_skills": []
+  },
+  "board": {
+    "width": 11,
+    "height": 11,
+    "border_is_wall": true,
+    "interior_obstacles": [],
+    "origin": "왼쪽 위 (0,0), 오른쪽 +x, 아래 +y"
+  }
+}
