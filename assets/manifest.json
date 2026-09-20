@@ -1,1 +1,191 @@
-{ "project_id": "shorthand", "contract_version": "1.0", "artifacts": [] }
+{
+  "project_id": "shorthand",
+  "contract_version": "1.0",
+  "note": "vector_authored 파일럿+3단계 몸체. 경로는 public/ 기준. 없는 항목은 placeholder.",
+  "artifacts": [
+    {
+      "asset_id": "visual.player.body",
+      "clip_id": "visual.player.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.player.body/idle/f0001.png"
+    },
+    {
+      "asset_id": "visual.player.body",
+      "clip_id": "visual.player.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "assets/delivery/visual.player.body/idle/f0002.png"
+    },
+    {
+      "asset_id": "visual.player.body",
+      "clip_id": "visual.player.body.act",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.player.body/act/f0001.png"
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "clip_id": "visual.enemy.grunt.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.enemy.grunt.body/idle/f0001.png"
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "clip_id": "visual.enemy.grunt.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "assets/delivery/visual.enemy.grunt.body/idle/f0002.png"
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "clip_id": "visual.enemy.grunt.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.enemy.grunt.body/cast/f0001.png"
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "clip_id": "visual.enemy.rapid.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.enemy.rapid.body/idle/f0001.png"
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "clip_id": "visual.enemy.rapid.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "assets/delivery/visual.enemy.rapid.body/idle/f0002.png"
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "clip_id": "visual.enemy.rapid.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.enemy.rapid.body/cast/f0001.png"
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "clip_id": "visual.enemy.chaser.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.enemy.chaser.body/idle/f0001.png"
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "clip_id": "visual.enemy.chaser.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "assets/delivery/visual.enemy.chaser.body/idle/f0002.png"
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "clip_id": "visual.enemy.chaser.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.enemy.chaser.body/cast/f0001.png"
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "clip_id": "visual.boss.executor.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.boss.executor.body/idle/f0001.png"
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "clip_id": "visual.boss.executor.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "assets/delivery/visual.boss.executor.body/idle/f0002.png"
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "clip_id": "visual.boss.executor.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "assets/delivery/visual.boss.executor.body/cast/f0001.png"
+    },
+    {
+      "asset_id": "visual.shard",
+      "relative_path": "assets/delivery/visual.shard/base.png"
+    },
+    {
+      "asset_id": "tile.floor",
+      "relative_path": "assets/delivery/tile.floor/base.png"
+    },
+    {
+      "asset_id": "tile.floor_alt",
+      "relative_path": "assets/delivery/tile.floor_alt/base.png"
+    },
+    {
+      "asset_id": "tile.wall",
+      "relative_path": "assets/delivery/tile.wall/base.png"
+    },
+    {
+      "asset_id": "ui.panel.card",
+      "state": "normal",
+      "relative_path": "assets/delivery/ui.panel.card/normal.png"
+    },
+    {
+      "asset_id": "ui.panel.card",
+      "state": "selected",
+      "relative_path": "assets/delivery/ui.panel.card/selected.png"
+    },
+    {
+      "asset_id": "icon.enemy.grunt",
+      "relative_path": "assets/delivery/icons/icon.enemy.grunt.png"
+    },
+    {
+      "asset_id": "icon.enemy.rapid",
+      "relative_path": "assets/delivery/icons/icon.enemy.rapid.png"
+    },
+    {
+      "asset_id": "icon.enemy.chaser",
+      "relative_path": "assets/delivery/icons/icon.enemy.chaser.png"
+    },
+    {
+      "asset_id": "icon.enemy.boss",
+      "relative_path": "assets/delivery/icons/icon.enemy.boss.png"
+    },
+    {
+      "asset_id": "icon.card.abbr_action",
+      "relative_path": "assets/delivery/icons/icon.card.abbr_action.png"
+    },
+    {
+      "asset_id": "icon.card.abbr_direction",
+      "relative_path": "assets/delivery/icons/icon.card.abbr_direction.png"
+    },
+    {
+      "asset_id": "icon.card.abbr_grammar",
+      "relative_path": "assets/delivery/icons/icon.card.abbr_grammar.png"
+    },
+    {
+      "asset_id": "icon.card.offense",
+      "relative_path": "assets/delivery/icons/icon.card.offense.png"
+    },
+    {
+      "asset_id": "icon.card.survival",
+      "relative_path": "assets/delivery/icons/icon.card.survival.png"
+    },
+    {
+      "asset_id": "icon.card.skill",
+      "relative_path": "assets/delivery/icons/icon.card.skill.png"
+    },
+    {
+      "asset_id": "icon.card.utility",
+      "relative_path": "assets/delivery/icons/icon.card.utility.png"
+    },
+    {
+      "asset_id": "icon.status.guard",
+      "relative_path": "assets/delivery/icons/icon.status.guard.png"
+    },
+    {
+      "asset_id": "icon.status.cooldown",
+      "relative_path": "assets/delivery/icons/icon.status.cooldown.png"
+    },
+    {
+      "asset_id": "icon.status.wait",
+      "relative_path": "assets/delivery/icons/icon.status.wait.png"
+    },
+    {
+      "asset_id": "icon.ui.pause",
+      "relative_path": "assets/delivery/icons/icon.ui.pause.png"
+    },
+    {
+      "asset_id": "icon.ui.settings",
+      "relative_path": "assets/delivery/icons/icon.ui.settings.png"
+    },
+    {
+      "asset_id": "icon.ui.close",
+      "relative_path": "assets/delivery/icons/icon.ui.close.png"
+    }
+  ]
+}

@@ -1,0 +1,1151 @@
+{
+  "schema_version": "workflow-asset-1",
+  "project_id": "shorthand",
+  "delivery_id": "delivery.vector.2026-09-20",
+  "delivery_role": "pilot+phase3_bodies",
+  "contract_version": "1.0",
+  "contract_hash": "5ead2c37b17248ccec0889578a7ccac0215307d8fc841c51a5339e00a6f78c4c",
+  "supplier": "dev session (vector_authored, resvg-js)",
+  "created_at": "2026-09-20T04:13:05.062Z",
+  "tool": {
+    "svg": "design/svg_sources.ts (hand-authored)",
+    "raster": "@resvg/resvg-js"
+  },
+  "artifacts": [
+    {
+      "asset_id": "visual.player.body",
+      "clip_id": "visual.player.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "visual.player.body/idle/f0001.png",
+      "sha256": "b22755373c81e8ead6ed59f7248b45961ba104bff3ec3a921aa0a42e27aa4a8d",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.player.body/idle/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.player.body",
+      "clip_id": "visual.player.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "visual.player.body/idle/f0002.png",
+      "sha256": "986379d0a6e39190a4d46f2a3930ed5f85575f9e35bde10c7fb383f8dcf1d0f2",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.player.body/idle/f0002.svg"
+      }
+    },
+    {
+      "asset_id": "visual.player.body",
+      "clip_id": "visual.player.body.act",
+      "frame_id": "f0001",
+      "relative_path": "visual.player.body/act/f0001.png",
+      "sha256": "a67e0bbd5da463e589706eb903f7329c01787120f4032d705cbee5c8a81dd6eb",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.player.body/act/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "clip_id": "visual.enemy.grunt.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "visual.enemy.grunt.body/idle/f0001.png",
+      "sha256": "51103e9ecafca96d6d33908f06317821730bb8b313c21e37b77fd32a8bba9282",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.grunt.body/idle/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "clip_id": "visual.enemy.grunt.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "visual.enemy.grunt.body/idle/f0002.png",
+      "sha256": "df356e0ae0d9b86dc2473acd811294b44ae448ed78b649743969aafadb6cc8ab",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.grunt.body/idle/f0002.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.grunt.body",
+      "clip_id": "visual.enemy.grunt.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "visual.enemy.grunt.body/cast/f0001.png",
+      "sha256": "c7fbf5a45dfd75ab1c43af231c20b234b9d81adce8c70ca2e8d2ce42c09b0962",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.grunt.body/cast/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "clip_id": "visual.enemy.rapid.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "visual.enemy.rapid.body/idle/f0001.png",
+      "sha256": "c59aeb69090a21350c21ab23d31bfd49497ecfcdb6a5d1c9f1755a2644d2775f",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.rapid.body/idle/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "clip_id": "visual.enemy.rapid.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "visual.enemy.rapid.body/idle/f0002.png",
+      "sha256": "aa208ad1c86e69119c5ff4d02be7d47eb63ad1c2c53839685ddc6f36ebe0d1e7",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.rapid.body/idle/f0002.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.rapid.body",
+      "clip_id": "visual.enemy.rapid.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "visual.enemy.rapid.body/cast/f0001.png",
+      "sha256": "32629c0581eda5080a53669a0fb8de0700be3b8cc7eabbd5ca43d62a61d64d1b",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.rapid.body/cast/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "clip_id": "visual.enemy.chaser.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "visual.enemy.chaser.body/idle/f0001.png",
+      "sha256": "78a18e4070069c34e7a6277c97c71125fb5c14901dc9951c2111fa584bea54a7",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.chaser.body/idle/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "clip_id": "visual.enemy.chaser.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "visual.enemy.chaser.body/idle/f0002.png",
+      "sha256": "9ac9dd1a314d559ce1b7d77bcedb249a3129b0734c2938d3f21b43513aefb3b3",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.chaser.body/idle/f0002.svg"
+      }
+    },
+    {
+      "asset_id": "visual.enemy.chaser.body",
+      "clip_id": "visual.enemy.chaser.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "visual.enemy.chaser.body/cast/f0001.png",
+      "sha256": "e79d277a209b3e58680f98ae7430ca510da1772362b6cd466f5d4d15445250ae",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.enemy.chaser.body/cast/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "clip_id": "visual.boss.executor.body.idle",
+      "frame_id": "f0001",
+      "relative_path": "visual.boss.executor.body/idle/f0001.png",
+      "sha256": "ec3b611e0144552498ed43d65e95fcc32a23281c661d071cb25ba379587a906d",
+      "size_px": [
+        160,
+        160
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.boss.executor.body/idle/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "clip_id": "visual.boss.executor.body.idle",
+      "frame_id": "f0002",
+      "relative_path": "visual.boss.executor.body/idle/f0002.png",
+      "sha256": "df41246e426c25c9e2a2505636d7aa2a6e3d670d9bceb97329b235c65e1988d6",
+      "size_px": [
+        160,
+        160
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.boss.executor.body/idle/f0002.svg"
+      }
+    },
+    {
+      "asset_id": "visual.boss.executor.body",
+      "clip_id": "visual.boss.executor.body.cast",
+      "frame_id": "f0001",
+      "relative_path": "visual.boss.executor.body/cast/f0001.png",
+      "sha256": "55610604c2a0e7e5085595f16cc48f3a42621514e7eb1511dc9b355976576111",
+      "size_px": [
+        160,
+        160
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.boss.executor.body/cast/f0001.svg"
+      }
+    },
+    {
+      "asset_id": "visual.shard",
+      "relative_path": "visual.shard/base.png",
+      "sha256": "0fad38725e1b3a7667c30299d6b1bf613db6dd1f68ad759d0e5f754f7b291844",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/visual.shard/base.svg"
+      }
+    },
+    {
+      "asset_id": "tile.floor",
+      "relative_path": "tile.floor/base.png",
+      "sha256": "caa6855eb1ddfa01b78756ec21892e5ae8f191c53eac81c4b14ba6363d115eb9",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/tile.floor/base.svg"
+      }
+    },
+    {
+      "asset_id": "tile.floor_alt",
+      "relative_path": "tile.floor_alt/base.png",
+      "sha256": "dc13c86edecbfbb58f7d39821cdcb2e0f6a58a19131e98a75d30319c9bae8e21",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/tile.floor_alt/base.svg"
+      }
+    },
+    {
+      "asset_id": "tile.wall",
+      "relative_path": "tile.wall/base.png",
+      "sha256": "6ae5f84c0c41c0f111b0180c5fb7858443194b2c39b6f29fffc528cb62e5bf7e",
+      "size_px": [
+        112,
+        112
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/tile.wall/base.svg"
+      }
+    },
+    {
+      "asset_id": "ui.panel.card",
+      "state": "normal",
+      "relative_path": "ui.panel.card/normal.png",
+      "sha256": "c254020cf3f1dd65b63483810d6b05e4a9153174997f253081fce6832727841d",
+      "size_px": [
+        240,
+        320
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/ui.panel.card/normal.svg"
+      }
+    },
+    {
+      "asset_id": "ui.panel.card",
+      "state": "selected",
+      "relative_path": "ui.panel.card/selected.png",
+      "sha256": "580298578fbb8388c280636a109407ffcc2518be60b9c23db35f30f3af9194b8",
+      "size_px": [
+        240,
+        320
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/ui.panel.card/selected.svg"
+      }
+    },
+    {
+      "asset_id": "icon.enemy.grunt",
+      "relative_path": "icons/icon.enemy.grunt.png",
+      "sha256": "031e6c49d4451fabdb32649b3e0b85f837f3b7c8aefc3e2420676d6a219a7cbc",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.enemy.grunt.svg"
+      }
+    },
+    {
+      "asset_id": "icon.enemy.rapid",
+      "relative_path": "icons/icon.enemy.rapid.png",
+      "sha256": "b4586a4fadb520e8935296e2c0fabe17a091315e5b1dcbcfa20357c9a2ce55e7",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.enemy.rapid.svg"
+      }
+    },
+    {
+      "asset_id": "icon.enemy.chaser",
+      "relative_path": "icons/icon.enemy.chaser.png",
+      "sha256": "e6b0c86b33d46e27a55b6118bf0d7147c3e94930d6896c028ee29c11b17ef6e5",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.enemy.chaser.svg"
+      }
+    },
+    {
+      "asset_id": "icon.enemy.boss",
+      "relative_path": "icons/icon.enemy.boss.png",
+      "sha256": "4964b5f014044e3113c5f55946c8067e29cc5fd9db874262266e5cb44844d3b9",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.enemy.boss.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.abbr_action",
+      "relative_path": "icons/icon.card.abbr_action.png",
+      "sha256": "ecb8afcb576fb36ca728c2b49e6d49274524e92dc8843b560d7d6ba725ada6fe",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.abbr_action.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.abbr_direction",
+      "relative_path": "icons/icon.card.abbr_direction.png",
+      "sha256": "2035e70a3683c5db2b187f76393c9cc2f4b2f5c8e93517667c18dbd2227a48a6",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.abbr_direction.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.abbr_grammar",
+      "relative_path": "icons/icon.card.abbr_grammar.png",
+      "sha256": "3515140c1405606aeaed4baa1dc5314888306e7ef3194df52605467b814821bc",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.abbr_grammar.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.offense",
+      "relative_path": "icons/icon.card.offense.png",
+      "sha256": "72939470c1d650cf75276882191dd85aeaa5f63eef7c7c655312e90b85afd746",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.offense.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.survival",
+      "relative_path": "icons/icon.card.survival.png",
+      "sha256": "85d04d37a118e34f80d6ca83b06d09635ebd7c8d202a499ee8182bdf57dd075e",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.survival.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.skill",
+      "relative_path": "icons/icon.card.skill.png",
+      "sha256": "70f70cb51f7b229d1a8bf7b195a83a16ae1f14373a9035d5d69c2c9e9326e6e2",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.skill.svg"
+      }
+    },
+    {
+      "asset_id": "icon.card.utility",
+      "relative_path": "icons/icon.card.utility.png",
+      "sha256": "24f04f2233905c3d09a14a4ccfe65f591aeb6ee31b74b2f72be2cec7da737a3d",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.card.utility.svg"
+      }
+    },
+    {
+      "asset_id": "icon.status.guard",
+      "relative_path": "icons/icon.status.guard.png",
+      "sha256": "79509375314e41978657f09b12ddad3387d4cd70f7ed14cea5077262ea9707bc",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.status.guard.svg"
+      }
+    },
+    {
+      "asset_id": "icon.status.cooldown",
+      "relative_path": "icons/icon.status.cooldown.png",
+      "sha256": "62e648ef4bc2a601230eb66686df80ac5bd0a34524230c61c62e026de4f74f3a",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.status.cooldown.svg"
+      }
+    },
+    {
+      "asset_id": "icon.status.wait",
+      "relative_path": "icons/icon.status.wait.png",
+      "sha256": "5f6e3ea679360512adee04af18712287030694c1f345dda2e9d910114d48eebb",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.status.wait.svg"
+      }
+    },
+    {
+      "asset_id": "icon.ui.pause",
+      "relative_path": "icons/icon.ui.pause.png",
+      "sha256": "d728ccb151484d4e7bb8440f2d070ebc65dbbcf3cd220de6b79e9fec4f7e188b",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.ui.pause.svg"
+      }
+    },
+    {
+      "asset_id": "icon.ui.settings",
+      "relative_path": "icons/icon.ui.settings.png",
+      "sha256": "f00d652a22c44a01df39b120d8bf07955e8c21c4577cc7ccaa996aa86fc481df",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.ui.settings.svg"
+      }
+    },
+    {
+      "asset_id": "icon.ui.close",
+      "relative_path": "icons/icon.ui.close.png",
+      "sha256": "ab5e3620ab6b6f3fa59b100553734ac3c4d44ab896132080aaef6ee64b65a7a9",
+      "size_px": [
+        64,
+        64
+      ],
+      "media_type": "image/png",
+      "origin": {
+        "method": "vector_authored",
+        "source": "design/svg/icons/icon.ui.close.svg"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "target": "visual.player.body/idle/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.player.body/idle/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.player.body/idle/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 13,11..88,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.player.body/idle/f0002",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.player.body/idle/f0002",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.player.body/idle/f0002",
+      "status": "pass",
+      "observed": "opaque bbox 13,9..88,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.player.body/act/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.player.body/act/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.player.body/act/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 7,3..88,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/idle/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/idle/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/idle/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 29,16..85,96 safe 20,12,92,100"
+    },
+    {
+      "target": "visual.enemy.grunt.body/idle/f0002",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/idle/f0002",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/idle/f0002",
+      "status": "pass",
+      "observed": "opaque bbox 29,14..85,96 safe 20,12,92,100"
+    },
+    {
+      "target": "visual.enemy.grunt.body/cast/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/cast/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.grunt.body/cast/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 29,3..91,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/idle/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/idle/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/idle/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 35,16..71,96 safe 20,12,92,100"
+    },
+    {
+      "target": "visual.enemy.rapid.body/idle/f0002",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/idle/f0002",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/idle/f0002",
+      "status": "pass",
+      "observed": "opaque bbox 35,14..71,96 safe 20,12,92,100"
+    },
+    {
+      "target": "visual.enemy.rapid.body/cast/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/cast/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.rapid.body/cast/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 23,26..68,96 safe 20,12,92,100"
+    },
+    {
+      "target": "visual.enemy.chaser.body/idle/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/idle/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/idle/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 26,8..86,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/idle/f0002",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/idle/f0002",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/idle/f0002",
+      "status": "pass",
+      "observed": "opaque bbox 26,8..86,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/cast/f0001",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/cast/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=96 (expect 96)"
+    },
+    {
+      "target": "visual.enemy.chaser.body/cast/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 15,8..86,96 safe 20,12,92,100 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.boss.executor.body/idle/f0001",
+      "status": "pass",
+      "observed": "canvas 160x160 (expect 160x160)"
+    },
+    {
+      "target": "visual.boss.executor.body/idle/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=136 (expect 136)"
+    },
+    {
+      "target": "visual.boss.executor.body/idle/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 24,5..136,136 safe 24,16,136,144 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.boss.executor.body/idle/f0002",
+      "status": "pass",
+      "observed": "canvas 160x160 (expect 160x160)"
+    },
+    {
+      "target": "visual.boss.executor.body/idle/f0002",
+      "status": "pass",
+      "observed": "foot bottom y=136 (expect 136)"
+    },
+    {
+      "target": "visual.boss.executor.body/idle/f0002",
+      "status": "pass",
+      "observed": "opaque bbox 24,3..136,136 safe 24,16,136,144 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.boss.executor.body/cast/f0001",
+      "status": "pass",
+      "observed": "canvas 160x160 (expect 160x160)"
+    },
+    {
+      "target": "visual.boss.executor.body/cast/f0001",
+      "status": "pass",
+      "observed": "foot bottom y=136 (expect 136)"
+    },
+    {
+      "target": "visual.boss.executor.body/cast/f0001",
+      "status": "pass",
+      "observed": "opaque bbox 24,42..159,136 safe 24,16,136,144 (warn: 안전영역 초과, 캔버스 안)"
+    },
+    {
+      "target": "visual.shard",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "visual.shard",
+      "status": "pass",
+      "observed": "opaque bbox 33,25..79,87 safe 32,24,80,88"
+    },
+    {
+      "target": "tile.floor",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "tile.floor",
+      "status": "pass",
+      "observed": "min alpha 255"
+    },
+    {
+      "target": "tile.floor_alt",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "tile.floor_alt",
+      "status": "pass",
+      "observed": "min alpha 255"
+    },
+    {
+      "target": "tile.wall",
+      "status": "pass",
+      "observed": "canvas 112x112 (expect 112x112)"
+    },
+    {
+      "target": "tile.wall",
+      "status": "pass",
+      "observed": "min alpha 255"
+    },
+    {
+      "target": "ui.panel.card/normal",
+      "status": "pass",
+      "observed": "canvas 240x320 (expect 240x320)"
+    },
+    {
+      "target": "ui.panel.card/selected",
+      "status": "pass",
+      "observed": "canvas 240x320 (expect 240x320)"
+    },
+    {
+      "target": "icon.enemy.grunt",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.enemy.grunt",
+      "status": "pass",
+      "observed": "opaque bbox 19,11..50,50 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.enemy.grunt",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.enemy.rapid",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.enemy.rapid",
+      "status": "pass",
+      "observed": "opaque bbox 26,10..45,52 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.enemy.rapid",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.enemy.chaser",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.enemy.chaser",
+      "status": "pass",
+      "observed": "opaque bbox 14,11..50,52 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.enemy.chaser",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.enemy.boss",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.enemy.boss",
+      "status": "pass",
+      "observed": "opaque bbox 12,11..52,53 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.enemy.boss",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.abbr_action",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.abbr_action",
+      "status": "pass",
+      "observed": "opaque bbox 12,22..52,43 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.abbr_action",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.abbr_direction",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.abbr_direction",
+      "status": "pass",
+      "observed": "opaque bbox 10,10..54,54 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.abbr_direction",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.abbr_grammar",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.abbr_grammar",
+      "status": "pass",
+      "observed": "opaque bbox 21,14..43,50 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.abbr_grammar",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.offense",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.offense",
+      "status": "pass",
+      "observed": "opaque bbox 14,12..52,50 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.offense",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.survival",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.survival",
+      "status": "pass",
+      "observed": "opaque bbox 12,10..52,55 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.survival",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.skill",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.skill",
+      "status": "pass",
+      "observed": "opaque bbox 12,17..52,54 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.skill",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.card.utility",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.card.utility",
+      "status": "pass",
+      "observed": "opaque bbox 14,10..50,54 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.card.utility",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.status.guard",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.status.guard",
+      "status": "pass",
+      "observed": "opaque bbox 12,15..52,45 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.status.guard",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.status.cooldown",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.status.cooldown",
+      "status": "pass",
+      "observed": "opaque bbox 15,12..49,52 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.status.cooldown",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.status.wait",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.status.wait",
+      "status": "pass",
+      "observed": "opaque bbox 16,28..48,36 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.status.wait",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.ui.pause",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.ui.pause",
+      "status": "pass",
+      "observed": "opaque bbox 17,14..47,50 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.ui.pause",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "icon.ui.settings",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.ui.settings",
+      "status": "pass",
+      "observed": "opaque bbox 11,11..53,53 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.ui.settings",
+      "status": "pass",
+      "observed": "colors #F2E9D8,#F2E9D7"
+    },
+    {
+      "target": "icon.ui.close",
+      "status": "pass",
+      "observed": "canvas 64x64 (expect 64x64)"
+    },
+    {
+      "target": "icon.ui.close",
+      "status": "pass",
+      "observed": "opaque bbox 15,15..49,49 safe 8,8,56,56"
+    },
+    {
+      "target": "icon.ui.close",
+      "status": "pass",
+      "observed": "colors #F2E9D8"
+    },
+    {
+      "target": "visual.player.body idle f0001↔f0002",
+      "status": "pass",
+      "observed": "outline diff 2px"
+    },
+    {
+      "target": "visual.enemy.grunt.body idle f0001↔f0002",
+      "status": "pass",
+      "observed": "outline diff 2px"
+    },
+    {
+      "target": "visual.enemy.rapid.body idle f0001↔f0002",
+      "status": "pass",
+      "observed": "outline diff 2px"
+    },
+    {
+      "target": "visual.enemy.chaser.body idle f0001↔f0002",
+      "status": "pass",
+      "observed": "outline diff 0px"
+    },
+    {
+      "target": "visual.boss.executor.body idle f0001↔f0002",
+      "status": "pass",
+      "observed": "outline diff 2px"
+    }
+  ],
+  "previews": [
+    "design/preview/preview_56px.png",
+    "design/preview/icons_20px.png",
+    "design/preview/icons_32px.png",
+    "design/preview/preview_board.png",
+    "design/preview/preview_danger.png",
+    "design/preview/card_panel_sizes.png"
+  ],
+  "missing_target_ids": [
+    "ref.shot.hud (raster_generated: 사용자 도구 필요)",
+    "font.mono, font.ui (CDN 로드로 대체)",
+    "audio.* 16 (audio_generated: ElevenLabs 필요)",
+    "screen.layout.* (검토 자료)"
+  ]
+}
