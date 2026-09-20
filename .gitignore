@@ -5,3 +5,5 @@ dist
 captures/
 .gh-pages-tmp/
 .vercel/
+
+.vercel

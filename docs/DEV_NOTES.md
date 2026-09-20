@@ -45,5 +45,6 @@
 ## 5. 배포 (2026-09-17)
 - GitHub: https://github.com/seoyunpark99-cyber/shorthand (main = 소스, gh-pages = 빌드). 재배포: `npm run deploy`.
 - GitHub Pages: https://seoyunpark99-cyber.github.io/shorthand/ (공개)
+- Vercel(2026-09-20): https://shorthand-blue.vercel.app (프로젝트 studio-hibi/shorthand). 재배포 `npm run deploy:vercel`. 미리보기 URL(shorthand-xxxx-studio-hibi.vercel.app)은 Deployment Protection 으로 로그인 필요 → 공개 링크는 production 별칭만.
 - Claude 아티팩트(비공개 링크): https://claude.ai/artifact/5J1E5jBhxVizsAygm34KWE — Pretendard CSS(jsdelivr)는 아티팩트 CSP 에서 차단되어 Noto Sans KR 로 대체됨.
 - gh 토큰에 workflow 스코프가 없어 Actions 워크플로는 `docs/ci/pages.yml.example` 로만 보관. `gh auth refresh -s workflow` 후 `.github/workflows/` 로 옮기면 push 마다 자동 배포.
