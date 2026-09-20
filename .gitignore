@@ -7,3 +7,4 @@ captures/
 .vercel/
 
 .vercel
+docs/proposal/*.pdf
