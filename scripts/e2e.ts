@@ -68,6 +68,12 @@ for (let i = 0; i < 60; i++) {
     await page.keyboard.press('1');
     await page.keyboard.press('Enter');
     await page.waitForTimeout(300);
+    // 레벨업 확정 직후 전투 입력이 살아 있어야 한다 (회귀: 축약 선택 후 입력 불가)
+    await page.keyboard.press('s');
+    await page.waitForTimeout(150);
+    const buf = (await page.evaluate(() => (window as unknown as { __sim: { state: () => { buffer?: string; player: { buffer: string }; phase: string } } }).__sim.state())) as S;
+    if (buf.phase === 'combat' && buf.player.buffer !== 's') errors.push(`after levelup: buffer='${buf.player.buffer}' (expected 's')`);
+    await page.keyboard.press('Escape');
     continue;
   }
   if (st.phase === 'combat' && st.player.buffer === '') {

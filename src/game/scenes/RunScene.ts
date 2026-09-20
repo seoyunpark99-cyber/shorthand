@@ -259,7 +259,15 @@ export class RunScene extends Phaser.Scene {
         return;
       }
     }
+    this.syncInputMode();
     this.renderAll();
+  }
+
+  /** 전투 문자 입력 허용 여부를 sim 상태와 오버레이로부터 매 프레임 결정한다 (레벨업 확정 직후 phase 전이가 다음 스텝에 일어나므로) */
+  private syncInputMode() {
+    const ph = this.sim.state.phase;
+    const overlay = !!(this.levelupC || this.pauseC || this.settings || this.confirm);
+    input.combatInput = !this.ended && !overlay && (ph === 'combat' || ph === 'waiting_first_input');
   }
 
   private endRun() {
@@ -1043,7 +1051,7 @@ export class RunScene extends Phaser.Scene {
     this.levelupC?.destroy(true);
     this.levelupC = null;
     this.levelupPanels = [];
-    if (this.sim.state.phase === 'combat' || this.sim.state.phase === 'waiting_first_input') input.combatInput = true;
+    this.syncInputMode();
   }
 
   // ───────────────────────── 일시정지·설정 ─────────────────────────
@@ -1077,7 +1085,7 @@ export class RunScene extends Phaser.Scene {
     this.pauseC?.destroy(true);
     this.pauseC = null;
     input.clear();
-    if (this.sim.state.phase !== 'paused') input.combatInput = true;
+    this.syncInputMode();
   }
 
   private openSettings() {
