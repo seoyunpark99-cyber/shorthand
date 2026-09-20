@@ -15,7 +15,8 @@
     "e2e": "tsx scripts/e2e.ts",
     "capture": "tsx scripts/capture.ts",
     "deploy": "bash scripts/deploy-pages.sh",
-    "assets:build": "tsx scripts/assets-build.ts"
+    "assets:build": "tsx scripts/assets-build.ts",
+    "deploy:vercel": "vercel --prod --yes"
   },
   "dependencies": {
     "phaser": "^4.2.1"
@@ -26,6 +27,7 @@
     "playwright": "^1.63.0",
     "tsx": "^4.23.13",
     "typescript": "^7.0.2",
+    "vercel": "^59.23.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.1"
   }

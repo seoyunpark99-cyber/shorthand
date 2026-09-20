@@ -4,3 +4,4 @@ dist
 .DS_Store
 captures/
 .gh-pages-tmp/
+.vercel/
