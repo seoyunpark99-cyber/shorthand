@@ -11,7 +11,7 @@ import { cardText } from '../cards_text';
 import { input, type UiKey } from '../input';
 import { getSettings, saveError } from '../save';
 import { cellCenter, col, colHex, fmtClock, L, SZ_MONO, SZ_UI, t, TILE, TOKENS, monoStyle, uiStyle } from '../tokens';
-import { ConfirmDialog, dimBg, iconText, ICON_LABEL, Menu, panelBg, SettingsPanel } from '../ui';
+import { ConfirmDialog, dimBg, iconNode, Menu, panelBg, SettingsPanel } from '../ui';
 
 const STEP_MS = SPAWN.simulation.step_ms;
 const RING = L.ring;
@@ -174,7 +174,7 @@ export class RunScene extends Phaser.Scene {
     this.ringGfx = this.add.graphics().setDepth(6);
     for (let i = 0; i < 8; i++) {
       this.ringTexts.push(this.add.text(0, 0, '', monoStyle(SZ_MONO.gauge)).setOrigin(0.5).setDepth(7).setVisible(false));
-      const ic = iconText(this, 0, 0, '', 20).setDepth(7).setVisible(false);
+      const ic = this.add.container(0, 0).setDepth(7).setVisible(false);
       this.ringIcons.push(ic);
     }
     for (let i = 0; i < 2; i++) this.bossLineNums.push(this.add.text(0, 0, '', monoStyle(SZ_MONO.gauge, 'boss.gold')).setOrigin(0.5).setDepth(2).setVisible(false));
@@ -189,7 +189,7 @@ export class RunScene extends Phaser.Scene {
   private buildHud() {
     // 상단 띠
     this.add.text(L.top_strip.x, L.top_strip.y + L.top_strip.h / 2, t('title.name'), uiStyle(SZ_UI.body, 'text.muted', { fontStyle: '600' })).setOrigin(0, 0.5);
-    const pauseIcon = iconText(this, L.top_strip.x + L.top_strip.w - 14, L.top_strip.y + L.top_strip.h / 2, ICON_LABEL['icon.ui.pause'], 24, 'text.muted');
+    const pauseIcon = iconNode(this, L.top_strip.x + L.top_strip.w - 14, L.top_strip.y + L.top_strip.h / 2, 'icon.ui.pause', 24, 'text.muted');
     pauseIcon.setSize(24, 24).setInteractive(new Phaser.Geom.Rectangle(-12, -12, 24, 24), Phaser.Geom.Rectangle.Contains);
     pauseIcon.on('pointerdown', () => input.push({ kind: 'pause', reason: 'user' }));
 
@@ -742,8 +742,14 @@ export class RunScene extends Phaser.Scene {
       const ix = cx + Math.cos(centerA) * RING.icon_offset_px;
       const iy = cy + Math.sin(centerA) * RING.icon_offset_px;
       icon.setPosition(ix, iy).setVisible(true);
-      const lbl = icon.list[1] as Phaser.GameObjects.Text;
-      lbl.setText(ICON_LABEL[`icon.enemy.${e.type}`] + (casters.length > 1 ? '′' : '') + (waiting ? '…' : ''));
+      const iconId = `icon.enemy.${e.type}`;
+      const marks = (casters.length > 1 ? '′' : '') + (waiting ? '…' : '');
+      if (icon.getData('iconId') !== iconId || icon.getData('marks') !== marks) {
+        icon.removeAll(true);
+        icon.add(iconNode(this, 0, 0, iconId, 20));
+        if (marks) icon.add(this.add.text(12, -10, marks, monoStyle(12, 'threat.orange')).setOrigin(0, 0.5));
+        icon.setData('iconId', iconId).setData('marks', marks);
+      }
     });
   }
 
@@ -972,7 +978,7 @@ export class RunScene extends Phaser.Scene {
       const panel = this.add.image(pos.x, pos.y, 'ui.panel.card:normal').setOrigin(0);
       this.levelupPanels.push(panel);
       const ct = cardText(card.id, card.rank, st.player, this.sim.vocab);
-      const icon = iconText(this, pos.x + 16 + 16, pos.y + 28, ICON_LABEL[ct.iconKey] ?? '?', 32);
+      const icon = iconNode(this, pos.x + 16 + 16, pos.y + 28, ct.iconKey, 32);
       const rank = this.add.text(pos.x + w - 16, pos.y + 28, ct.rank, monoStyle(SZ_MONO.gauge, 'text.muted')).setOrigin(1, 0.5);
       const num = this.add.text(pos.x + w / 2, pos.y + 28, String(i + 1), monoStyle(SZ_MONO.gauge, 'text.muted')).setOrigin(0.5);
       const title = this.add.text(pos.x + 16, pos.y + 76, ct.title, uiStyle(SZ_UI.card_title, 'text.primary', { fontStyle: '600', wordWrap: { width: w - 32 } }));

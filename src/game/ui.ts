@@ -278,6 +278,21 @@ export class ConfirmDialog {
   }
 }
 
+/** 아이콘: manifest 로 로드된 icon.* 텍스처가 있으면 이미지, 없으면 글자 placeholder */
+export function iconNode(scene: Phaser.Scene, x: number, y: number, iconId: string, size: number, color = 'text.primary'): Phaser.GameObjects.Container {
+  if (scene.textures.exists(iconId)) {
+    const c = scene.add.container(x, y);
+    const im = scene.add.image(0, 0, iconId).setDisplaySize(size, size);
+    if (color !== 'text.primary') im.setTint(col(color));
+    c.add(im);
+    c.setData('iconId', iconId);
+    return c;
+  }
+  const c = iconText(scene, x, y, ICON_LABEL[iconId] ?? '?', size, color);
+  c.setData('iconId', iconId);
+  return c;
+}
+
 /** 글자 1~2자의 사각 아이콘 (placeholder icons) */
 export function iconText(scene: Phaser.Scene, x: number, y: number, label: string, size: number, color = 'text.primary'): Phaser.GameObjects.Container {
   const c = scene.add.container(x, y);

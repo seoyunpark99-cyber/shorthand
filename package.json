@@ -14,12 +14,14 @@
     "replay": "tsx scripts/replay.ts",
     "e2e": "tsx scripts/e2e.ts",
     "capture": "tsx scripts/capture.ts",
-    "deploy": "bash scripts/deploy-pages.sh"
+    "deploy": "bash scripts/deploy-pages.sh",
+    "assets:build": "tsx scripts/assets-build.ts"
   },
   "dependencies": {
     "phaser": "^4.2.1"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@types/node": "^22.20.3",
     "playwright": "^1.63.0",
     "tsx": "^4.23.13",

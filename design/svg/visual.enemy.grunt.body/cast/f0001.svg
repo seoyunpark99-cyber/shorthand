@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="112" height="112" viewBox="0 0 112 112" shape-rendering="geometricPrecision">
+<rect x="30" y="42" width="8" height="12" rx="2" fill="#303A46" stroke="#1C232C" stroke-width="2" stroke-linejoin="round"/>
+<rect x="74" y="42" width="8" height="12" rx="2" fill="#303A46" stroke="#1C232C" stroke-width="2" stroke-linejoin="round"/>
+<rect x="36" y="40" width="40" height="54.5" rx="4" fill="#303A46" stroke="#1C232C" stroke-width="3" stroke-linejoin="round"/>
+<line x1="46" y1="58" x2="66" y2="58" stroke="#8A96A6" stroke-width="2" stroke-linecap="butt"/>
+<line x1="56" y1="58" x2="56" y2="84" stroke="#8A96A6" stroke-width="2" stroke-linecap="butt"/>
+<rect x="42" y="18" width="28" height="26" rx="3" fill="#303A46" stroke="#1C232C" stroke-width="3" stroke-linejoin="round"/>
+<line x1="46" y1="31" x2="66" y2="31" stroke="#8A96A6" stroke-width="3" stroke-linecap="butt"/>
+<line x1="78" y1="48" x2="87" y2="44" stroke="#303A46" stroke-width="4" stroke-linecap="round"/>
+<rect x="84" y="14" width="6" height="30" rx="1" fill="#303A46" stroke="#1C232C" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="84,14 90,14 87,4" fill="#FF9B54" stroke="#1C232C" stroke-width="2" stroke-linejoin="round"/>
+</svg>

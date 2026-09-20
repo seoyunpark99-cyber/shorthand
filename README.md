@@ -16,6 +16,7 @@
 | preview | `npx vite preview --port 4173` | 빌드 결과 미리보기 |
 | e2e | `npm run e2e` | Playwright(설치된 Chrome)로 타이틀→런→레벨업→결과→기록 완주, `captures/` |
 | capture | `npm run capture` | 대표 전투 장면 fixture 캡처 |
+| assets:build | `npm run assets:build` | `design/svg_sources.ts` → PNG 납품·검사·manifest·프리뷰 |
 
 브라우저에서 `F3` 개발 모드(asset_id·placeholder·M(t)·스텝), 콘솔 `window.__sim.state()` / `.hash()` / `.replay()`.
 
